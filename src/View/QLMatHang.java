@@ -101,6 +101,7 @@ public class QLMatHang extends javax.swing.JFrame {
         jc_SearchMH = new javax.swing.JComboBox<>();
         btn_UpdateMH = new javax.swing.JButton();
         btn_BackMH = new javax.swing.JButton();
+        btn_ChangeMH = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -155,6 +156,13 @@ public class QLMatHang extends javax.swing.JFrame {
                 btn_BackMHActionPerformed(evt);
             }
         });
+        
+        btn_ChangeMH.setText("Sửa");
+        btn_ChangeMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChangeMHActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,15 +185,18 @@ public class QLMatHang extends javax.swing.JFrame {
                             .addGap(27, 27, 27)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(91, 91, 91)
                         .addComponent(btn_AddMH, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(btn_UpdateMH)
+                        .addGap(58, 58, 58)
+                        .addComponent(btn_ChangeMH, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
-                        .addComponent(btn_DeleteMH, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(btn_BackMH)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(btn_DeleteMH)
+                        .addGap(65, 65, 65)
+                        .addComponent(btn_UpdateMH)
+                        .addGap(54, 54, 54)
+                        .addComponent(btn_BackMH)
+                        .addGap(55, 55, 55)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,6 +211,7 @@ public class QLMatHang extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_ChangeMH)
                     .addComponent(btn_DeleteMH)
                     .addComponent(btn_UpdateMH)
                     .addComponent(btn_AddMH)
@@ -428,7 +440,12 @@ public class QLMatHang extends javax.swing.JFrame {
             Logger.getLogger(QLMatHang.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(QLMatHang.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
+    }
+     
+     
+     private void btn_ChangeMHActionPerformed(java.awt.event.ActionEvent evt) {                                             
+
     }
     
               
@@ -440,7 +457,8 @@ public class QLMatHang extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jl_ListMH;
     private javax.swing.JTable tbProduct;
-    private javax.swing.JTextField tf_SearchMH;                  
+    private javax.swing.JTextField tf_SearchMH;   
+    private javax.swing.JButton btn_ChangeMH;
 }
 
 

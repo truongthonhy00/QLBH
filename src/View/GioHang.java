@@ -278,8 +278,14 @@ public class GioHang extends javax.swing.JFrame {
 
     private void btn_PrintHDActionPerformed(java.awt.event.ActionEvent evt) {                                            
         try {
-              
-            //Đưa dữ liệu khách hàng vào database
+                //Xử lý lỗi để trống
+            if(tf_NameKH.getText().equals("") || tf_AddressKH.getText().equals("") || tf_CodeKH.getText().equals("") || tf_PhoneKH.getText().equals("") || total_money.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Vui lòng nhập thông tin cho khách hàng trước khi in!");
+            }
+            else
+            {
+                //Đưa dữ liệu khách hàng vào databas
             StaffManager sm = new StaffManager();
             String HoTen = tf_NameKH.getText();
             String DiaChi = tf_AddressKH.getText(); 
@@ -318,7 +324,7 @@ public class GioHang extends javax.swing.JFrame {
             tf_CodeKH.setText("");
             tf_PhoneKH.setText("");
             total_money.setText("0");
-            
+            }  
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GioHang.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
