@@ -87,10 +87,10 @@ public class ProductManager {
     
     
            //Phục vụ tìm kiếm
-    public boolean check_MaMH(String maMH) throws SQLException{
+    public boolean check_MaMH(String MaMH) throws SQLException{
         String query = "Select * from MATHANG  where MaMH = ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, maMH);
+        ps.setString(1, MaMH);
         ResultSet rs = ps.executeQuery();
         if (rs.next()){
             return true;
@@ -230,5 +230,21 @@ public class ProductManager {
             ps.setString(2, maMH);
             ps.execute();
             return true;
+    }
+       public boolean updateMH(String MaMH, String TenMH, String LoaiMH, String HangSX, int SoLuong, int DonGia) throws SQLException{
+        if (this.check_MaMH(MaMH)){
+            String query = "update MATHANG " + "SET MaMH = ?, TenMH = ? , LoaiMH = ?, HangSX = ?, SoLuong = ?, DonGia = ?";
+            PreparedStatement ps2 = this.conn.prepareStatement(query);
+            ps2.setString(1, MaMH);
+            ps2.setString(2, TenMH);
+            ps2.setString(3, LoaiMH);
+            ps2.setString(4, HangSX);
+            ps2.setInt(5, SoLuong);
+            ps2.setInt(6, DonGia);
+            ps2.execute();
+            return true;            
+        } else{
+            return false;
+        }
     }
 }

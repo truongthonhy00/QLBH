@@ -445,7 +445,8 @@ public class QLMatHang extends javax.swing.JFrame {
      
      
      private void btn_ChangeMHActionPerformed(java.awt.event.ActionEvent evt) {                                             
-
+         SuaMatHang sm=new SuaMatHang();
+         sm.setVisible(true);
     }
     
               
