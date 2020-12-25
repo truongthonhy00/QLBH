@@ -1,6 +1,7 @@
 package View;
 
 import Controller.BillManager;
+import Controller.ProductManager;
 import Controller.StaffManager;
 import Model.Bill;
 import Model.Cart;
@@ -311,6 +312,16 @@ public class GioHang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Hóa đơn đang được in, vui lòng chờ trong giây lát!!!");
             hd.dispose();
             JOptionPane.showMessageDialog(null, "In hóa đơn thành công!");
+            
+              //Update lại số lượng tồn kho của các mặt hàng sau khi KH đã mua hàng
+            ProductManager pm = new ProductManager();  
+            int SoLuongMH_After_Buy;
+            for(Cart gh: listGH)
+            {
+                int SLHangTon = pm.getSLHangTon(gh.getTenMH());              //Lấy SL hàng tồn trong kho theo tên MH
+                SoLuongMH_After_Buy = SLHangTon - gh.getSoLuongMua();        //Tính SL hàng sau khi KH mua
+                pm.updateMH_After_Buy(gh.getTenMH(), SoLuongMH_After_Buy);   //Update SL hàng còn lại lên database
+            }
                   
             //Xóa giỏ hàng trong database
             bm.deleteCart();

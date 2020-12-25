@@ -539,7 +539,7 @@ public class SuaMatHang extends javax.swing.JFrame {
             else 
             {
                 ProductManager pm = new ProductManager();
-                pm.updateMH(MaMH,TenMH,LoaiMH,HangSX,Integer.parseInt(SoLuong),Integer.parseInt(DonGia));
+                pm.updateMH_After_Repair(MaMH,TenMH,LoaiMH,HangSX,Integer.parseInt(SoLuong),Integer.parseInt(DonGia));
                 JOptionPane.showMessageDialog(null, "Thay đổi thông tin mặt hàng thành công!");
 
                     //Xóa dữ liệu trên các Text
