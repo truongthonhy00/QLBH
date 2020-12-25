@@ -234,17 +234,16 @@ public class ProductManager {
        
        
             //Update lại mặt hàng 
-        public boolean updateMH(int STT, String MaMH, String TenMH, String LoaiMH, String HangSX, int SoLuong, int DonGia) throws SQLException{
+        public boolean updateMH(String MaMH, String TenMH, String LoaiMH, String HangSX, int SoLuong, int DonGia) throws SQLException{
         if (this.check_MaMH(MaMH)){
-            String query = "update MATHANG " + "SET MaMH = ?, TenMH = ? , LoaiMH = ?, HangSX = ?, SoLuong = ?, DonGia = ? where SttMH = ?";
+            String query = "update MATHANG " + "SET TenMH = ? , LoaiMH = ?, HangSX = ?, SoLuong = ?, DonGia = ? where MaMH = ?";
             PreparedStatement ps2 = this.conn.prepareStatement(query);
-            ps2.setString(1, MaMH);
-            ps2.setString(2, TenMH);
-            ps2.setString(3, LoaiMH);
-            ps2.setString(4, HangSX);
-            ps2.setInt(5, SoLuong);
-            ps2.setInt(6, DonGia);
-            ps2.setInt(7, STT);
+            ps2.setString(1, TenMH);
+            ps2.setString(2, LoaiMH);
+            ps2.setString(3, HangSX);
+            ps2.setInt(4, SoLuong);
+            ps2.setInt(5, DonGia);
+            ps2.setString(6, MaMH);
             ps2.execute();
             return true;            
         } else{

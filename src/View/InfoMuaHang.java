@@ -2,6 +2,7 @@ package View;
 
 import Controller.BillManager;
 import Controller.ProductManager;
+import Controller.StaffManager;
 import Model.DBConnector;
 import Model.Product;
 import java.awt.event.ActionEvent;
@@ -269,10 +270,27 @@ public class InfoMuaHang extends javax.swing.JFrame {
     }                     
 
     private void btn_BackHDActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        this.setVisible(false);
-//        Menu mn = new Menu();
-//        mn.setVisible(true);
-//        this.dispose();
+        try {
+            Menu mn = new Menu();
+            mn.setVisible(true);
+            StaffManager sm = new StaffManager();
+            
+            //Lấy tên Acc đang đăng nhập (Acc on thì sẽ có trạng thái là 1)
+            String user = sm.getAcc_follow_Status(1);     
+            
+            //Check xem loại Acc
+            if(sm.Check_Acc(user))
+            {
+                //Ẩn 2 chức năng nếu người đăng nhập là User
+                mn.hiddenBTNNV();
+                mn.hiddenBTNMH();
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }                                          
 
     private void btn_AddOfHDActionPerformed(java.awt.event.ActionEvent evt) {                                            
