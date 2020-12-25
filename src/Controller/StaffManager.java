@@ -140,98 +140,6 @@ public class StaffManager {
     
     
     
-           //Cài đặt trạng thái cho KH (0: KH cũ, 1:KH mới)
-    public void setKH_Status (int Status, int SDT) throws SQLException
-    {
-        String query = "update KHACHHANG " + "SET TrangThaiKH = ? where SDT = ?";
-        PreparedStatement ps2 = this.conn.prepareStatement(query);
-        ps2.setInt(1, Status);
-        ps2.setInt(2, SDT);
-        ps2.execute();
-    }
-    
-          //Lấy KH theo trạng thái
-    public List<Staff> getListKH(int TrangThaiKH) throws SQLException
-    {
-        List<Staff> ListKH = new ArrayList<>();
-        String query = "Select * from KHACHHANG where TrangThaiKH = ?";
-        PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setInt(1, TrangThaiKH);
-        ResultSet rs = ps.executeQuery();
-        Staff kh = new Staff();
-        while(rs.next()){
-            kh.setMaNV(rs.getInt("MaKH"));
-            kh.setName(rs.getString("HoTen"));
-            kh.setAddress(rs.getString("DiaChi"));
-            kh.setPhone(rs.getInt("SDT"));
-            kh.setMaSoThue(rs.getInt("MaSoThue"));
-            kh.setLuong(rs.getInt("TongHD")); 
-            ListKH.add(kh);
-        } 
-        return ListKH;
-    }
-    
-
-
-    
-    
-    
-          //Cài đặt trạng thái cho Acc (0: Acc off, 1:Acc on)
-    public void setAcc_Status (int Status, String Acc) throws SQLException
-    {
-        String query = "update ACCOUNT " + "SET TrangThaiAcc = ? where acc = ?";
-        PreparedStatement ps2 = this.conn.prepareStatement(query);
-        ps2.setInt(1, Status);
-        ps2.setString(2, Acc);
-        ps2.execute();
-    }
-    
-          //Lấy tên Acc theo trạng thái
-    public String getAcc_follow_Status(int Status) throws SQLException
-    {
-        String query = "Select * from ACCOUNT where TrangThaiAcc = ?";
-        PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setInt(1, Status);
-        ResultSet rs = ps.executeQuery();     
-        String Acc = "";
-        while(rs.next()){
-            Acc = rs.getString("acc");
-        } 
-        return Acc;
-    }
-    
-      //Lấy Mã nhân viên lập hóa đơn theo trạng thái
-    public int getMaNVHT_follow_Status(int Status) throws SQLException
-    {
-        String query = "Select * from ACCOUNT where TrangThaiAcc = ?";
-        PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setInt(1, Status);
-        ResultSet rs = ps.executeQuery();    
-        int MaNVHT = 0;
-        while(rs.next()){
-            MaNVHT = rs.getInt("MaNVHT");
-        } 
-        return MaNVHT;
-    }
-    
-        //Kiểm tra loại tên Acc 
-    public boolean Check_Acc(String userName) throws SQLException{
-        String query = "Select * from ACCOUNT where acc = ?";
-        PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, userName);
-        ResultSet rs = ps.executeQuery();
-        if(rs.next()){
-            String s1 = rs.getString("role");
-            if(s1.equalsIgnoreCase("User")){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    
-     
-    
              //DS nhân viên
      public List<Staff> getListNV() throws SQLException{
         List<Staff> ListNV = new ArrayList<>();
@@ -381,6 +289,98 @@ public class StaffManager {
             ps.setInt(1, MaNV);
             ps.execute();
             return true;
+    }
+     
+     
+     
+     
+     
+      //Cài đặt trạng thái cho KH (0: KH cũ, 1:KH mới)
+    public void setKH_Status (int Status, int SDT) throws SQLException
+    {
+        String query = "update KHACHHANG " + "SET TrangThaiKH = ? where SDT = ?";
+        PreparedStatement ps2 = this.conn.prepareStatement(query);
+        ps2.setInt(1, Status);
+        ps2.setInt(2, SDT);
+        ps2.execute();
+    }
+    
+          //Lấy KH theo trạng thái
+    public List<Staff> getListKH(int TrangThaiKH) throws SQLException
+    {
+        List<Staff> ListKH = new ArrayList<>();
+        String query = "Select * from KHACHHANG where TrangThaiKH = ?";
+        PreparedStatement ps = this.conn.prepareStatement(query);
+        ps.setInt(1, TrangThaiKH);
+        ResultSet rs = ps.executeQuery();
+        Staff kh = new Staff();
+        while(rs.next()){
+            kh.setMaNV(rs.getInt("MaKH"));
+            kh.setName(rs.getString("HoTen"));
+            kh.setAddress(rs.getString("DiaChi"));
+            kh.setPhone(rs.getInt("SDT"));
+            kh.setMaSoThue(rs.getInt("MaSoThue"));
+            kh.setLuong(rs.getInt("TongHD")); 
+            ListKH.add(kh);
+        } 
+        return ListKH;
+    }
+    
+
+    
+    
+    
+          //Cài đặt trạng thái cho Acc (0: Acc off, 1:Acc on)
+    public void setAcc_Status (int Status, String Acc) throws SQLException
+    {
+        String query = "update ACCOUNT " + "SET TrangThaiAcc = ? where acc = ?";
+        PreparedStatement ps2 = this.conn.prepareStatement(query);
+        ps2.setInt(1, Status);
+        ps2.setString(2, Acc);
+        ps2.execute();
+    }
+    
+          //Lấy tên Acc theo trạng thái
+    public String getAcc_follow_Status(int Status) throws SQLException
+    {
+        String query = "Select * from ACCOUNT where TrangThaiAcc = ?";
+        PreparedStatement ps = this.conn.prepareStatement(query);
+        ps.setInt(1, Status);
+        ResultSet rs = ps.executeQuery();     
+        String Acc = "";
+        while(rs.next()){
+            Acc = rs.getString("acc");
+        } 
+        return Acc;
+    }
+    
+      //Lấy Mã nhân viên lập hóa đơn theo trạng thái
+    public int getMaNVHT_follow_Status(int Status) throws SQLException
+    {
+        String query = "Select * from ACCOUNT where TrangThaiAcc = ?";
+        PreparedStatement ps = this.conn.prepareStatement(query);
+        ps.setInt(1, Status);
+        ResultSet rs = ps.executeQuery();    
+        int MaNVHT = 0;
+        while(rs.next()){
+            MaNVHT = rs.getInt("MaNVHT");
+        } 
+        return MaNVHT;
+    }
+    
+        //Kiểm tra loại tên Acc 
+    public boolean Check_Acc(String userName) throws SQLException{
+        String query = "Select * from ACCOUNT where acc = ?";
+        PreparedStatement ps = this.conn.prepareStatement(query);
+        ps.setString(1, userName);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()){
+            String s1 = rs.getString("role");
+            if(s1.equalsIgnoreCase("User")){
+                return true;
+            }
+        }
+        return false;
     }
 }
 
