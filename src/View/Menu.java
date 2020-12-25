@@ -112,7 +112,7 @@ public class Menu extends javax.swing.JFrame {
     private void btn_QLHDActionPerformed(java.awt.event.ActionEvent evt) {                                         
         InfoMuaHang info = new InfoMuaHang();
         info.setVisible(true);
-        this.dispose();
+//        this.dispose();
     }                                        
 
     private void btn_QLNVActionPerformed(java.awt.event.ActionEvent evt) {                                         

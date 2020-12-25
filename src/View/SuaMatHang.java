@@ -27,6 +27,8 @@ public class SuaMatHang extends javax.swing.JFrame {
      */
     public SuaMatHang() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
         try {
             ProductManager pm = new ProductManager();
             Model model = new Model();
@@ -97,7 +99,7 @@ public class SuaMatHang extends javax.swing.JFrame {
         public int getRowCount() {
             return listMH.size(); 
         }
-        
+
     }
 
     /**
@@ -130,12 +132,19 @@ public class SuaMatHang extends javax.swing.JFrame {
         jb_save = new javax.swing.JButton();
         jb_return = new javax.swing.JButton();
         vnd = new javax.swing.JLabel();
-        lb_stt = new javax.swing.JLabel();
+        lb_Lay_Stt = new javax.swing.JLabel();
+        lb_Stt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lb_form.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lb_form.setText("THAY ĐỔI THÔNG TIN MẶT HÀNG");
+        
+        lb_Stt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_Stt.setText("Số thứ tự");
+        
+        lb_Lay_Stt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_Lay_Stt.setText("0");
 
         lb_MaMH.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lb_MaMH.setText("Mã mặt hàng");
@@ -155,41 +164,6 @@ public class SuaMatHang extends javax.swing.JFrame {
         lb_DonGia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lb_DonGia.setText("Đơn giá");
 
-        tf_LoaiMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_LoaiMHActionPerformed(evt);
-            }
-        });
-
-        tf_HangSX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_HangSXActionPerformed(evt);
-            }
-        });
-
-        tf_DonGia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_DonGiaActionPerformed(evt);
-            }
-        });
-
-        tf_SoLuong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_SoLuongActionPerformed(evt);
-            }
-        });
-
-        tf_TenMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_TenMHActionPerformed(evt);
-            }
-        });
-
-        tf_MaMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_MaMHActionPerformed(evt);
-            }
-        });
 
         jc_search.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jc_search.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm kiếm Mã", "Tìm kiếm Tên", "Tìm kiếm Loại", "Tìm kiếm Hãng" }));
@@ -259,8 +233,9 @@ public class SuaMatHang extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lb_MaMH)
                                 .addGap(22, 22, 22)))
+              
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_stt, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lb_Lay_Stt, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(tf_MaMH)
                                 .addComponent(tf_TenMH, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))))
@@ -306,6 +281,10 @@ public class SuaMatHang extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addComponent(jb_return)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(lb_Stt)
+                .addContainerGap(565, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +295,8 @@ public class SuaMatHang extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jc_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_stt))
+                    .addComponent(lb_Stt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_Lay_Stt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_MaMH)
@@ -347,11 +327,8 @@ public class SuaMatHang extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void tf_HangSXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_HangSXActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_HangSXActionPerformed
 
     private void jb_getdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_getdataActionPerformed
     try {
@@ -361,10 +338,10 @@ public class SuaMatHang extends javax.swing.JFrame {
             if (row != -1) 
             {   
                 String MaMH = (String) tb_MH.getValueAt(row, 1);  //Lấy giá trị của phần tử hàng được chọn, cột 0  
-                  
+
                    //Tạo mảng chứa ds mặt hàng được click
                 List<Product> pd = pm.getListMH_follow_MaMH(MaMH); 
-                
+
                   //Lấy dữ liệu của phần tử thứ 0 lên các Text(Vì trong mảng chỉ có 1 mặt hàng ở vị trí 0)
                 tf_MaMH.setText(pd.get(0).getMaMH());
                 tf_TenMH.setText(pd.get(0).getTenMH());
@@ -372,6 +349,7 @@ public class SuaMatHang extends javax.swing.JFrame {
                 tf_HangSX.setText(pd.get(0).getHangSX());
                 tf_SoLuong.setText(String.valueOf(pd.get(0).getSoLuong()));
                 tf_DonGia.setText(String.valueOf(pd.get(0).getDonGia()));
+                lb_Lay_Stt.setText(String.valueOf(pd.get(0).getSttMH()));
             } 
             else JOptionPane.showMessageDialog(null, "Vui lòng click vào hàng cần lấy dữ liệu!");
         } catch (ClassNotFoundException ex) {
@@ -379,7 +357,7 @@ public class SuaMatHang extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(SuaMatHang.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jb_getdataActionPerformed
+    }
 
     private void jc_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_searchActionPerformed
          String Search = jc_search.getSelectedItem().toString();
@@ -550,27 +528,8 @@ public class SuaMatHang extends javax.swing.JFrame {
                 break;
             }
         }
-    }//GEN-LAST:event_jc_searchActionPerformed
+    }
 
-    private void tf_MaMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_MaMHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_MaMHActionPerformed
-
-    private void tf_TenMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_TenMHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_TenMHActionPerformed
-
-    private void tf_LoaiMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_LoaiMHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_LoaiMHActionPerformed
-
-    private void tf_SoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_SoLuongActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_SoLuongActionPerformed
-
-    private void tf_DonGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_DonGiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_DonGiaActionPerformed
 
     private void jb_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_saveActionPerformed
  try {      
@@ -580,8 +539,9 @@ public class SuaMatHang extends javax.swing.JFrame {
             String HangSX = tf_HangSX.getText();
             String SoLuong= tf_SoLuong.getText();
             String DonGia =tf_DonGia.getText();
-            
-            
+            int STT = Integer.parseInt(lb_Lay_Stt.getText());
+
+
             //Xử lý lỗi để trống
             if (MaMH.equals("") ||TenMH.equals("") || LoaiMH.equals("") || HangSX.equals("") ||
                      SoLuong.equals("") || DonGia.equals("")  ){
@@ -590,19 +550,19 @@ public class SuaMatHang extends javax.swing.JFrame {
             else 
             {
                 ProductManager pm = new ProductManager();
-               
-                pm.updateMH(MaMH,TenMH,LoaiMH,HangSX,Integer.parseInt(SoLuong),Integer.parseInt(DonGia));
+                pm.updateMH(STT,MaMH,TenMH,LoaiMH,HangSX,Integer.parseInt(SoLuong),Integer.parseInt(DonGia));
                 JOptionPane.showMessageDialog(null, "Thay đổi thông tin mặt hàng thành công!");
-                            
+
                     //Xóa dữ liệu trên các Text
-                 
+
                  tf_MaMH.setText("");
                  tf_TenMH.setText("");
                  tf_LoaiMH.setText("");
                  tf_HangSX.setText("");
                  tf_SoLuong.setText("");
                  tf_DonGia.setText("");
-                            
+                 lb_Lay_Stt.setText("");
+
                       //Cập nhật lại bảng
                   Model model = new Model();
                   this.listMH = pm.getListMH();
@@ -614,52 +574,15 @@ public class SuaMatHang extends javax.swing.JFrame {
             Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_jb_saveActionPerformed
+        }        
+    }
 
     private void jb_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_returnActionPerformed
-    this.setVisible(false);
-  
-    }//GEN-LAST:event_jb_returnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SuaMatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SuaMatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SuaMatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SuaMatHang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SuaMatHang().setVisible(true);
-            }
-        });
+         this.setVisible(false);
     }
-                           
+
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
@@ -674,7 +597,8 @@ public class SuaMatHang extends javax.swing.JFrame {
     private javax.swing.JLabel lb_SoLuong;
     private javax.swing.JLabel lb_TenMH;
     private javax.swing.JLabel lb_form;
-    private javax.swing.JLabel lb_stt;
+    private javax.swing.JLabel lb_Stt;
+    private javax.swing.JLabel lb_Lay_Stt;
     private javax.swing.JTable tb_MH;
     private javax.swing.JTextField tf_DonGia;
     private javax.swing.JTextField tf_HangSX;

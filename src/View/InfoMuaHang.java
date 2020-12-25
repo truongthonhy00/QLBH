@@ -270,9 +270,9 @@ public class InfoMuaHang extends javax.swing.JFrame {
 
     private void btn_BackHDActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.setVisible(false);
-        Menu mn = new Menu();
-        mn.setVisible(true);
-        this.dispose();
+//        Menu mn = new Menu();
+//        mn.setVisible(true);
+//        this.dispose();
     }                                          
 
     private void btn_AddOfHDActionPerformed(java.awt.event.ActionEvent evt) {                                            
