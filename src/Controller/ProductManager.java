@@ -74,7 +74,7 @@ public class ProductManager {
     }
     
     public String getMaMH(String tenMH) throws SQLException{
-        String query = "Select * from MATHANG where TenMH = ?";
+        String query = "Select * from MATHANG where tenmh = ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
         ps.setString(1, tenMH);
         ResultSet rs = ps.executeQuery();
@@ -233,50 +233,22 @@ public class ProductManager {
     }
        
        
-            //Update lại mặt hàng sau khi sửa
-        public boolean updateMH_After_Repair(String MaMH, String TenMH, String LoaiMH, String HangSX, int SoLuong, int DonGia) throws SQLException{
+            //Update lại mặt hàng 
+        public boolean updateMH(int STT, String MaMH, String TenMH, String LoaiMH, String HangSX, int SoLuong, int DonGia) throws SQLException{
         if (this.check_MaMH(MaMH)){
-            String query = "update MATHANG " + "SET TenMH = ? , LoaiMH = ?, HangSX = ?, SoLuong = ?, DonGia = ? where MaMH = ?";
+            String query = "update MATHANG " + "SET MaMH = ?, TenMH = ? , LoaiMH = ?, HangSX = ?, SoLuong = ?, DonGia = ? where SttMH = ?";
             PreparedStatement ps2 = this.conn.prepareStatement(query);
-            ps2.setString(1, TenMH);
-            ps2.setString(2, LoaiMH);
-            ps2.setString(3, HangSX);
-            ps2.setInt(4, SoLuong);
-            ps2.setInt(5, DonGia);
-            ps2.setString(6, MaMH);
+            ps2.setString(1, MaMH);
+            ps2.setString(2, TenMH);
+            ps2.setString(3, LoaiMH);
+            ps2.setString(4, HangSX);
+            ps2.setInt(5, SoLuong);
+            ps2.setInt(6, DonGia);
+            ps2.setInt(7, STT);
             ps2.execute();
             return true;            
         } else{
             return false;
         }
     }
-        
-        
-        
-        //Kiểm số lượng mặt hàng đưa vào giỏ hàng so với số lượng thực tế trong kho
-        public int getSLHangTon(String TenMH) throws SQLException{
-        String query = "Select * from MATHANG where TenMH = ?";
-        PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, TenMH);
-        ResultSet rs = ps.executeQuery();
-        int SLMH = 0;
-        if (rs.next()){
-            SLMH = rs.getInt("SoLuong");
-        }
-        return SLMH;
-    }
-        
-        
-        
-        
-        //Update lại mặt hàng sau khi KH mua hàng thành công
-        public void updateMH_After_Buy(String TenMH, int SoLuongMH_After_Buy) throws SQLException{
-            String query = "update MATHANG " + "SET SoLuong = ? where TenMH = ?";
-            PreparedStatement ps2 = this.conn.prepareStatement(query);
-            ps2.setInt(1, SoLuongMH_After_Buy);
-            ps2.setString(2, TenMH);
-            ps2.execute();
-        }
-
-     
 }

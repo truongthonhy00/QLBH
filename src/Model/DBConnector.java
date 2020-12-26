@@ -13,7 +13,7 @@ import java.sql.Connection;
 public class DBConnector {
     public static Connection getConnect() throws Exception{
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        String sql = "jdbc:sqlserver://localhost:1433;databaseName=QLBH_Cai_Tienx;user=sa;password=sa;";
+        String sql = "jdbc:sqlserver://localhost:1433;databaseName=QLBHnew;user=sa;password=sa;";
         Connection conn = DriverManager.getConnection(sql);
         return conn;
     }

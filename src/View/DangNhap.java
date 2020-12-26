@@ -112,6 +112,11 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }                   
                                          
+        public String user()
+        {
+            String us = tf_Account.getText();
+            return us;
+        }
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String user = tf_Account.getText();
         String pass = tf_PassWord.getText();
@@ -127,26 +132,21 @@ public class DangNhap extends javax.swing.JFrame {
                     case 2:
                         JOptionPane.showMessageDialog(null, "Tài khoản hoặc Mật khẩu không chính xác!");
                         break;
-                    case 0:                     
-                        //Đưa acc đăng nhập lên trạng thái hoạt động
-                        sm.setAcc_Status(1, user);
-                        
+                    case 0:
+                        this.dispose();                       
                         menu.setVisible(true);
                         menu.lbUserName(user);
-                        this.dispose();
                         break;
-                    case 1:                  
-                        //Đưa acc đăng nhập lên trạng thái hoạt động
-                        sm.setAcc_Status(1, user);
-                        
+                    case 1:
+                        this.dispose();
                         menu.setVisible(true);
                         menu.lbUserName(user);
-                        
-                        //Ẩn 2 chức năng đi (Vì là user)
                         menu.hiddenBTNNV();
                         menu.hiddenBTNMH();
-                        this.dispose();
-                        break;  
+                        InfoMuaHang info = new InfoMuaHang();
+                        info.hiddenShowAllInfoHD();
+                        break;
+                        
                 }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
@@ -158,7 +158,7 @@ public class DangNhap extends javax.swing.JFrame {
     private void  tf_AccountKeyPressed(java.awt.event.KeyEvent evt){
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
             String user = tf_Account.getText();
-            String pass = tf_PassWord.getText();
+        String pass = tf_PassWord.getText();
         if (user.equals("") || pass.equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
         }
@@ -171,26 +171,21 @@ public class DangNhap extends javax.swing.JFrame {
                     case 2:
                         JOptionPane.showMessageDialog(null, "Tài khoản hoặc Mật khẩu không chính xác!");
                         break;
-                    case 0:                     
-                        //Đưa acc đăng nhập lên trạng thái hoạt động
-                        sm.setAcc_Status(1, user);
-                        
+                    case 0:
+                        this.dispose();                       
                         menu.setVisible(true);
                         menu.lbUserName(user);
-                        this.dispose();
                         break;
-                    case 1:                  
-                        //Đưa acc đăng nhập lên trạng thái hoạt động
-                        sm.setAcc_Status(1, user);
-                        
+                    case 1:
+                        this.dispose();
                         menu.setVisible(true);
                         menu.lbUserName(user);
-                        
-                        //Ẩn 2 chức năng đi (Vì là user)
                         menu.hiddenBTNNV();
                         menu.hiddenBTNMH();
-                        this.dispose();
-                        break;    
+                        InfoMuaHang info = new InfoMuaHang();
+                        info.hiddenShowAllInfoHD();
+                        break;
+                        
                 }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
@@ -218,26 +213,21 @@ public class DangNhap extends javax.swing.JFrame {
                     case 2:
                         JOptionPane.showMessageDialog(null, "Tài khoản hoặc Mật khẩu không chính xác!");
                         break;
-                    case 0:                     
-                        //Đưa acc đăng nhập lên trạng thái hoạt động
-                        sm.setAcc_Status(1, user);
-                        
+                    case 0:
+                        this.dispose();                       
                         menu.setVisible(true);
                         menu.lbUserName(user);
-                        this.dispose();
                         break;
-                    case 1:                  
-                        //Đưa acc đăng nhập lên trạng thái hoạt động
-                        sm.setAcc_Status(1, user);
-                        
+                    case 1:
+                        this.dispose();
                         menu.setVisible(true);
                         menu.lbUserName(user);
-                        
-                        //Ẩn 2 chức năng đi (Vì là user)
                         menu.hiddenBTNNV();
                         menu.hiddenBTNMH();
-                        this.dispose();
-                        break;    
+                        InfoMuaHang info = new InfoMuaHang();
+                        info.hiddenShowAllInfoHD();
+                        break;
+                        
                 }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
@@ -253,6 +243,9 @@ public class DangNhap extends javax.swing.JFrame {
         this.dispose();
     }                                          
 
+    public String getTfAccount() {
+        return tf_Account.getText();
+    }
                   
     private javax.swing.JButton btn_Login;
     private javax.swing.JButton jbn_BackLG;

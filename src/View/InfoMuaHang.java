@@ -2,7 +2,6 @@ package View;
 
 import Controller.BillManager;
 import Controller.ProductManager;
-import Controller.StaffManager;
 import Model.DBConnector;
 import Model.Product;
 import java.awt.event.ActionEvent;
@@ -144,8 +143,8 @@ public class InfoMuaHang extends javax.swing.JFrame {
         jl_ProducerMH = new javax.swing.JLabel();
         jl_AmountMH = new javax.swing.JLabel();
         jl_InfoBuy = new javax.swing.JLabel();
-        btn_AddOfGH = new javax.swing.JButton();
-        btn_BackGH = new javax.swing.JButton();
+        btn_AddOfHD = new javax.swing.JButton();
+        btn_BackHD = new javax.swing.JButton();
         btn_Bill = new javax.swing.JButton();
         jc_ProducerMH = new javax.swing.JComboBox<>();
         jl_NameMH = new javax.swing.JLabel();
@@ -165,15 +164,15 @@ public class InfoMuaHang extends javax.swing.JFrame {
         jl_InfoBuy.setFont(new java.awt.Font("Tahoma", 1, 18)); 
         jl_InfoBuy.setText("THÔNG TIN MUA HÀNG");
 
-        btn_AddOfGH.setText("Thêm vào giỏ hàng");
-        btn_AddOfGH.addActionListener(new java.awt.event.ActionListener() {
+        btn_AddOfHD.setText("Thêm vào giỏ hàng");
+        btn_AddOfHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AddOfGHActionPerformed(evt);
+                btn_AddOfHDActionPerformed(evt);
             }
         });
 
-        btn_BackGH.setText("Quay lại");
-        btn_BackGH.addActionListener(new java.awt.event.ActionListener() {
+        btn_BackHD.setText("Quay lại");
+        btn_BackHD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_BackHDActionPerformed(evt);
             }
@@ -212,14 +211,14 @@ public class InfoMuaHang extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jc_TypeMH, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(btn_AddOfGH)
+                                .addComponent(btn_AddOfHD)
                                 .addGap(73, 73, 73)
                                 .addComponent(btn_Bill)))
                         .addGap(7, 7, 7)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(btn_BackGH, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_BackHD, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,8 +260,8 @@ public class InfoMuaHang extends javax.swing.JFrame {
                         .addGap(0, 88, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Bill)
-                            .addComponent(btn_BackGH)
-                            .addComponent(btn_AddOfGH))
+                            .addComponent(btn_BackHD)
+                            .addComponent(btn_AddOfHD))
                         .addGap(34, 34, 34))))
         );
 
@@ -270,59 +269,40 @@ public class InfoMuaHang extends javax.swing.JFrame {
     }                     
 
     private void btn_BackHDActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        try {
-            Menu mn = new Menu();
-            mn.setVisible(true);
-            StaffManager sm = new StaffManager();
-            
-            //Lấy tên Acc đang đăng nhập (Acc on thì sẽ có trạng thái là 1)
-            String user = sm.getAcc_follow_Status(1);     
-            
-            //Check xem loại Acc
-            if(sm.Check_Acc(user))
-            {
-                //Ẩn 2 chức năng nếu người đăng nhập là User
-                mn.hiddenBTNNV();
-                mn.hiddenBTNMH();
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.dispose();
+        this.setVisible(false);
+//        Menu mn = new Menu();
+//        mn.setVisible(true);
+//        this.dispose();
     }                                          
 
-    private void btn_AddOfGHActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void btn_AddOfHDActionPerformed(java.awt.event.ActionEvent evt) {                                            
         if (jc_NameMH.getSelectedItem().toString().equals("")||jc_ProducerMH.getSelectedItem().toString().equals("")||jc_TypeMH.getSelectedItem().toString().equals("")||(int)js_AmountMH.getValue()<1) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn đầy đủ thông tin!");
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
         }
         else 
         {
             try
             {
                 BillManager bm = new BillManager();
-                ProductManager pm = new ProductManager();  
-                String TenMH = (String)jc_NameMH.getSelectedItem();
-                int DonGia = bm.getDonGia(TenMH);
-                int SLmua = (int) js_AmountMH.getValue();
-                
-                  //Kiểm tra số lượng mua có vượt quá hàng tồn trong kho hay k???
-                int SLHangTon = pm.getSLHangTon(TenMH);
-                if(SLmua <= SLHangTon)   //Trường hợp k vượt quá
-                {
-                    int ThanhTien = SLmua * bm.getDonGia((String)jc_NameMH.getSelectedItem());
-                 
-                         //Thêm dữ liệu mua hàng vào giỏ hàng
-                    bm.addCart(TenMH, DonGia, SLmua, ThanhTien);
-                    JOptionPane.showMessageDialog(null, "Thêm vào giỏ hàng thành công!");
-                }
-                else 
-                {
-                    JOptionPane.showMessageDialog(null, "Rất tiếc, số lượng mua đã vượt quá giới hạn!\nTrong kho hiện nay chỉ còn "+SLHangTon+" chiếc "+TenMH+ " mà thôi!");
-                }
-                
-                      //Reset lại
+                ProductManager pm = new ProductManager();
+                    
+//                    DangNhap dn = null;
+//                    DBConnector db = new DBConnector();
+//                    Connection conn = db.getConnect();
+//                    String us = dn.user();
+//                    String query = "Select * from ACCOUNT where acc = ?";
+//                    PreparedStatement ps = conn.prepareStatement(query);
+//                    ps.setString(1, us);
+//                    ResultSet rs = ps.executeQuery();
+//                    int MaNVHT = rs.getInt("MaNVHT");
+                    
+                 String TenMH = (String)jc_NameMH.getSelectedItem();
+                 int DonGia = bm.getDonGia(TenMH);
+                 int SLmua = (int) js_AmountMH.getValue();
+                 int ThanhTien = SLmua * bm.getDonGia((String)jc_NameMH.getSelectedItem());
+                      
+                 bm.addCart(TenMH, DonGia, SLmua, ThanhTien);
+                 JOptionPane.showMessageDialog(null, "Thêm vào giỏ hàng thành công!");
                 this.dispose();
                 InfoMuaHang info = new InfoMuaHang();
                 info.setVisible(true);
@@ -348,8 +328,8 @@ public class InfoMuaHang extends javax.swing.JFrame {
     }
     
     private javax.swing.JLabel lbUserName;
-    private javax.swing.JButton btn_AddOfGH;
-    private javax.swing.JButton btn_BackGH;
+    private javax.swing.JButton btn_AddOfHD;
+    private javax.swing.JButton btn_BackHD;
     private javax.swing.JButton btn_Bill;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JComboBox<String> jc_NameMH;
