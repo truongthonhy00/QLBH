@@ -1,12 +1,31 @@
 package View;
+import Controller.StaffManager;
+import Model.Staff;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 
 public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
-        
         setLocationRelativeTo(null);
         setResizable(false);
+        try {
+            StaffManager sm = new StaffManager();
+            
+            int MaNVHT = sm.getMaNVHT_follow_Status(1);   //Lấy Mã nhân viên đăng nhập
+            if(MaNVHT != 0)   //Nếu là nhân viên thì mới có tên trong DSNV. Còn admin thì không(Mã Admin = 0)
+            {
+                Staff nv = sm.getDetail(MaNVHT);              //Lấy thông tin nhân viên đăng nhập theo mã nhân viên vừa lấy được
+                String NameNVHT = nv.getName();               //Lấy tên nhân viên
+                jl_Account.setText("Xin chào, " + NameNVHT + "!");
+            }
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")                    
@@ -49,7 +68,7 @@ public class Menu extends javax.swing.JFrame {
         jl_Menu.setForeground(new java.awt.Color(0, 102, 255));
         jl_Menu.setText("MENU");
 
-        jl_Account.setText("Account");
+        jl_Account.setText("Xin chào, Admin của chúng ta!");
 
         jbn_Logout.setFont(new java.awt.Font("Tahoma", 1, 12)); 
         jbn_Logout.setText("Đăng xuất");
@@ -112,7 +131,7 @@ public class Menu extends javax.swing.JFrame {
     private void btn_QLHDActionPerformed(java.awt.event.ActionEvent evt) {                                         
         InfoMuaHang info = new InfoMuaHang();
         info.setVisible(true);
-//        this.dispose();
+        this.dispose();
     }                                        
 
     private void btn_QLNVActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -121,13 +140,52 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }                                        
 
-    private void jbn_LogoutActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        DangNhap dn = new DangNhap();
-        this.setVisible(false);
-        dn.setVisible(true);
-    }                                          
+    private void jbn_LogoutActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        //Đưa Acc về trạng thái off
+        try {
+            StaffManager sm = new StaffManager();
+            
+            //Lấy tên Acc đang on (Online thì trạng thái là 1)
+            String user = sm.getAcc_follow_Status(1);
+            
+            //Đưa Acc về trạng thái off (Off thì trạng thái là 0)
+            sm.setAcc_Status(0, user);
+            
+            DangNhap dn = new DangNhap();
+            dn.setVisible(true);
+            this.dispose();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }  
+    
+    public void hiddenBTNNV(){
+        btn_QLNV.setVisible(false);
+    }
+    
+    public void hiddenBTNMH(){
+        btn_QLMH.setVisible(false);
+    }
+    
     public void lbUserName(String user){
-        jl_Account.setText("Welcome, " +"Administrator" + "!");
+        try {
+            StaffManager sm = new StaffManager();
+            
+            int MaNVHT = sm.getMaNVHT_follow_Status(1);   //Lấy Mã nhân viên đăng nhập
+            if(MaNVHT != 0)   //Nếu là nhân viên thì mới có tên trong DSNV. Còn admin thì không(Mã Admin = 0)
+            {
+                Staff nv = sm.getDetail(MaNVHT);              //Lấy thông tin nhân viên đăng nhập theo mã nhân viên vừa lấy được
+                String NameNVHT = nv.getName();               //Lấy tên nhân viên
+                jl_Account.setText("Xin chào, " + NameNVHT + "!");
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
                  
@@ -138,12 +196,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jl_Account;
     private javax.swing.JLabel jl_Menu;                
 
-    public void hiddenBTNNV(){
-        btn_QLNV.setVisible(false);
-    }
-    
-    public void hiddenBTNMH(){
-        btn_QLMH.setVisible(false);
-    }
 }
 
