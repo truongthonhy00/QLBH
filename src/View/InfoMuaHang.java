@@ -26,9 +26,11 @@ public class InfoMuaHang extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
         try {
             BillManager bm = new BillManager();
+            jc_ProducerMH.addItem("");
+            jc_NameMH.addItem("");
+            jc_TypeMH.addItem("");
             bm.getListAllHangSX().forEach(e -> {                
                 jc_ProducerMH.addItem(e.getHangSX());               
             });    
@@ -38,12 +40,102 @@ public class InfoMuaHang extends javax.swing.JFrame {
             bm.getListAllLoaiMH().forEach(e ->{
                 jc_TypeMH.addItem(e.getLoaiMH());
             }); 
-        } catch (SQLException ex) {
-            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
+            
+            
+            
+            // Xử lý lọc khi chọn nút LOẠI MẶT HÀNG trước
+            jc_TypeMH.addActionListener (new ActionListener () {
+                public void actionPerformed(ActionEvent e) {
+                        try {
+                            if (((String)jc_ProducerMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
+                            {
+                                jc_ProducerMH.removeAllItems();                               
+                                jc_ProducerMH.addItem("");
+                                bm.getListHangSX_follow_LoaiMH((String)jc_TypeMH.getSelectedItem()).forEach(i ->{jc_ProducerMH.addItem(i.getHangSX());});
+                                
+                                jc_NameMH.removeAllItems();
+                                jc_NameMH.addItem("");
+                                bm.getListTenMH_follow_LoaiMH((String)jc_TypeMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
+                            }
+                            else if(!((String)jc_ProducerMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
+                            {    
+                                    jc_NameMH.removeAllItems();
+                                    jc_NameMH.addItem("");
+                                    bm.getListTenMH_follow_LoaiMH_and_HangSX((String)jc_TypeMH.getSelectedItem(),(String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
+                            }
+                            else if(((String)jc_ProducerMH.getSelectedItem()).equals("") && (!((String)jc_NameMH.getSelectedItem()).equals("")))
+                            {    
+                                    jc_ProducerMH.removeAllItems();
+                                    jc_ProducerMH.addItem("");
+                                    bm.getListHangSX_follow_LoaiMH_and_TenMH((String)jc_TypeMH.getSelectedItem(),(String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_ProducerMH.addItem(i.getHangSX());});
+                            }
+                            
+                        } catch (SQLException ex) {
+                            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                }
+            });
+            
+            
+            
+            // Xử lý lọc khi chọn nút HÃNG SẢN XUẤT trước
+            jc_ProducerMH.addActionListener (new ActionListener () {
+                public void actionPerformed(ActionEvent e) {
+                        try {
+                            if (((String)jc_TypeMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
+                            {
+                                jc_TypeMH.removeAllItems();
+                                jc_TypeMH.addItem("");
+                                bm.getListLoaiMH_follow_HangSX((String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_TypeMH.addItem(i.getLoaiMH());});
+                                
+                                jc_NameMH.removeAllItems();
+                                jc_NameMH.addItem("");
+                                bm.getListTenMH_follow_HangSX((String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
+                            }
+                            else if(!((String)jc_TypeMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
+                            {
+                                    jc_NameMH.removeAllItems();
+                                    jc_NameMH.addItem("");
+                                    bm.getListTenMH_follow_LoaiMH_and_HangSX((String)jc_TypeMH.getSelectedItem(),(String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
+                            }
+                            else if(((String)jc_TypeMH.getSelectedItem()).equals("") && !((String)jc_NameMH.getSelectedItem()).equals(""))
+                            {
+                                    jc_TypeMH.removeAllItems();
+                                    jc_TypeMH.addItem("");
+                                    bm.getListTenMH_follow_LoaiMH_and_HangSX((String)jc_ProducerMH.getSelectedItem(),(String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_TypeMH.addItem(i.getLoaiMH());});
+                            }
+                            
+                        } catch (SQLException ex) {
+                            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                }
+            });
+            
+            
+            
+////                      Xử lý lọc khi chọn nút TÊN MẶT HÀNG trước
+//            jc_NameMH.addActionListener (new ActionListener () {
+//                public void actionPerformed(ActionEvent e) {
+//                        try {
+//                            if (((String)jc_TypeMH.getSelectedItem()).equals("") && ((String)jc_ProducerMH.getSelectedItem()).equals(""))
+//                            {
+//                                jc_ProducerMH.removeAllItems();
+//                                jc_ProducerMH.addItem("");
+//                                bm.getListHangSX_follow_TenMH((String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_ProducerMH.addItem(i.getHangSX());});
+//                                
+//                                jc_TypeMH.removeAllItems();
+//                                jc_TypeMH.addItem("");
+//                                bm.getListLoaiMH_follow_TenMH((String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_TypeMH.addItem(i.getLoaiMH());});
+//                            }
+//                        } catch (SQLException ex) {
+//                            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                }
+//            });
         } catch (Exception ex) {
             Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }     
+    }
 
     @SuppressWarnings("unchecked")                     
     private void initComponents() {
@@ -65,6 +157,8 @@ public class InfoMuaHang extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jl_ProducerMH.setText("Hãng sản xuất:");
 
         jl_AmountMH.setText("Số lượng mua:");
 
@@ -92,35 +186,9 @@ public class InfoMuaHang extends javax.swing.JFrame {
             }
         });
 
-        jl_TypeMH.setText("Loại mặt hàng:");
-        
-        
-        jl_ProducerMH.setText("Hãng sản xuất:");
-        
-        
         jl_NameMH.setText("Tên mặt hàng:");
-        
-        jc_TypeMH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        jc_TypeMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jc_TypeMHActionPerformed(evt);
-            }
-        });
-        
-        jc_ProducerMH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        jc_ProducerMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jc_ProducerMHActionPerformed(evt);
-            }
-        });
-        
-        jc_NameMH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        jc_NameMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jc_NameMHActionPerformed(evt);
-            }
-        });
-        
+
+        jl_TypeMH.setText("Loại mặt hàng:");
         
         SpinnerModel spinnerModel = new SpinnerNumberModel(0, 0, 10000, 1);
         js_AmountMH = new JSpinner(spinnerModel);
@@ -259,123 +327,18 @@ public class InfoMuaHang extends javax.swing.JFrame {
                 InfoMuaHang info = new InfoMuaHang();
                 info.setVisible(true);
               
-            } catch (SQLException ex) {
-                Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                System.out.println("Lỗi 1");
             } catch (Exception ex) {
-                Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                System.out.println("Lỗi 2");
+            }                         
         }
     }                                           
 
     private void btn_BillActionPerformed(java.awt.event.ActionEvent evt) {                                         
         GioHang gh = new GioHang();
         gh.setVisible(true);
-    } 
-    
-    
-    
-    private void jc_TypeMHActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        try {             
-            BillManager bm = new BillManager();
-            if (((String)jc_ProducerMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
-            {
-                jc_ProducerMH.removeAllItems();                               
-                jc_ProducerMH.addItem("");
-                bm.getListHangSX_follow_LoaiMH((String)jc_TypeMH.getSelectedItem()).forEach(i ->{jc_ProducerMH.addItem(i.getHangSX());});
-                                
-                jc_NameMH.removeAllItems();
-                jc_NameMH.addItem("");
-                bm.getListTenMH_follow_LoaiMH((String)jc_TypeMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
-            }
-            else if(!((String)jc_ProducerMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
-            {    
-                jc_NameMH.removeAllItems();
-                jc_NameMH.addItem("");
-                bm.getListTenMH_follow_LoaiMH_and_HangSX((String)jc_TypeMH.getSelectedItem(),(String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
-            }
-            else if(((String)jc_ProducerMH.getSelectedItem()).equals("") && (!((String)jc_NameMH.getSelectedItem()).equals("")))
-            {    
-                jc_ProducerMH.removeAllItems();
-                jc_ProducerMH.addItem("");
-                bm.getListHangSX_follow_LoaiMH_and_TenMH((String)jc_TypeMH.getSelectedItem(),(String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_ProducerMH.addItem(i.getHangSX());});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    
-    
-    private void jc_ProducerMHActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        try {
-            BillManager bm = new BillManager();
-            if (((String)jc_TypeMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
-            {
-                jc_TypeMH.removeAllItems();
-                jc_TypeMH.addItem("");
-                bm.getListLoaiMH_follow_HangSX((String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_TypeMH.addItem(i.getLoaiMH());});
-                                
-                jc_NameMH.removeAllItems();
-                jc_NameMH.addItem("");
-                bm.getListTenMH_follow_HangSX((String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
-            }
-            else if(!((String)jc_TypeMH.getSelectedItem()).equals("") && ((String)jc_NameMH.getSelectedItem()).equals(""))
-            {
-                jc_NameMH.removeAllItems();
-                jc_NameMH.addItem("");
-                bm.getListTenMH_follow_LoaiMH_and_HangSX((String)jc_TypeMH.getSelectedItem(),(String)jc_ProducerMH.getSelectedItem()).forEach(i ->{jc_NameMH.addItem(i.getTenMH());});
-            }
-            else if(((String)jc_TypeMH.getSelectedItem()).equals("") && !((String)jc_NameMH.getSelectedItem()).equals(""))
-            {
-                jc_TypeMH.removeAllItems();
-                jc_TypeMH.addItem("");
-                bm.getListLoaiMH_follow_HangSX_and_TenMH((String)jc_ProducerMH.getSelectedItem(),(String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_TypeMH.addItem(i.getLoaiMH());});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    private void jc_NameMHActionPerformed(java.awt.event.ActionEvent evt) {   
-//        try {
-//            BillManager bm = new BillManager();
-//            if (((String)jc_TypeMH.getSelectedItem()).equals("") && ((String)jc_ProducerMH.getSelectedItem()).equals(""))
-//            {
-//                jc_ProducerMH.removeAllItems();
-////                jc_ProducerMH.addItem("");
-//                bm.getListHangSX_follow_TenMH((String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_ProducerMH.addItem(i.getHangSX());});
-//                                
-//                jc_TypeMH.removeAllItems();
-////                jc_TypeMH.addItem("");
-//                bm.getListLoaiMH_follow_TenMH((String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_TypeMH.addItem(i.getLoaiMH());});
-//            }
-////            else if(!((String)jc_TypeMH.getSelectedItem()).equals("") && ((String)jc_ProducerMH.getSelectedItem()).equals(""))
-////            {
-////                jc_ProducerMH.removeAllItems();
-////                jc_ProducerMH.addItem("");
-////                bm.getListHangSX_follow_LoaiMH_and_TenMH((String)jc_TypeMH.getSelectedItem(),(String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_ProducerMH.addItem(i.getHangSX());});
-////            }
-////            else if(((String)jc_TypeMH.getSelectedItem()).equals("") && !((String)jc_ProducerMH.getSelectedItem()).equals(""))
-////            {
-////                jc_TypeMH.removeAllItems();
-////                jc_TypeMH.addItem("");
-////                bm.getListLoaiMH_follow_HangSX_and_TenMH((String)jc_ProducerMH.getSelectedItem(),(String)jc_NameMH.getSelectedItem()).forEach(i ->{jc_TypeMH.addItem(i.getLoaiMH());});
-////            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (Exception ex) {
-//            Logger.getLogger(InfoMuaHang.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }
-    
-    
-    
+    }                  
     public String IFlbUserName(String user){
         lbUserName.setText("Xin chào, " + user + "!");
         return user;

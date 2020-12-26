@@ -177,6 +177,7 @@ public class AddMatHang extends javax.swing.JFrame {
         if (TenMH.equals("") || HangSx.equals("") || SoLuong.equals("") || DonGia.equals("")||MaMH.equals("")||LoaiMH.equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
         }
+       
         else {
             try {
                 ProductManager pm = new ProductManager();
@@ -188,10 +189,14 @@ public class AddMatHang extends javax.swing.JFrame {
                tf_TypeMH.setText("");
                 tf_AmountMH.setText("");     
                 tfl_PriceMH.setText("");
+                
+                
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AddMatHang.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
                 Logger.getLogger(AddMatHang.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(rootPane, "bạn nhập sai định dạng, mời nhập lại!");
+              
             }
         }
        

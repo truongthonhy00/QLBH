@@ -256,6 +256,7 @@ public class AddNhanVien extends javax.swing.JFrame {
             }
         } catch (ParseException ex) {
             Logger.getLogger(AddNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng, mời nhập lại");
         }
                 
     }                                         

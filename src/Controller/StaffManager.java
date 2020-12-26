@@ -319,7 +319,7 @@ public class StaffManager {
             kh.setName(rs.getString("HoTen"));
             kh.setAddress(rs.getString("DiaChi"));
             kh.setPhone(rs.getInt("SDT"));
-            kh.setMaSoThue(rs.getString("MaSoThue"));
+            kh.setMaSoThue(rs.getInt("MaSoThue"));
             kh.setLuong(rs.getInt("TongHD")); 
             ListKH.add(kh);
         } 

@@ -42,17 +42,16 @@ public class DangNhap extends javax.swing.JFrame {
                 btn_LoginActionPerformed(evt);
             }
         });
-        tf_Account.addKeyListener(new java.awt.event.KeyAdapter() {
+         tf_Account.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tf_AccountKeyPressed(evt);
             }
         });
-        tf_PassWord.addKeyListener(new java.awt.event.KeyAdapter() {
+                  tf_PassWord.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tf_PassWordKeyPressed(evt);
             }
         });
-        
         jl_Login.setFont(new java.awt.Font("Tahoma", 1, 18));
         jl_Login.setText("ĐĂNG NHẬP");
 

@@ -74,9 +74,9 @@ public class ProductManager {
     }
     
     public String getMaMH(String tenMH) throws SQLException{
-        String query = "Select * from MATHANG where TenMH = ?";
+        String query = "Select * from MATHANG where TenMH like ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, tenMH);
+        ps.setString(1, "%"+tenMH+"%");
         ResultSet rs = ps.executeQuery();
         String maMH = "";
         if (rs.next()){
@@ -88,9 +88,9 @@ public class ProductManager {
     
            //Phục vụ tìm kiếm
     public boolean check_MaMH(String maMH) throws SQLException{
-        String query = "Select * from MATHANG  where MaMH = ?";
+        String query = "Select * from MATHANG  where MaMH like ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, maMH);
+        ps.setString(1,"%"+ maMH+"%");
         ResultSet rs = ps.executeQuery();
         if (rs.next()){
             return true;
@@ -101,9 +101,9 @@ public class ProductManager {
     
     public List<Product> getListMH_follow_MaMH(String MaMH) throws SQLException{
         List<Product> ListMH_follow_MaMH = new ArrayList<>();
-        String query = "Select * from MATHANG where MaMH = ?";
+        String query = "Select * from MATHANG where MaMH like ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, MaMH);
+        ps.setString(1,"%"+ MaMH+"%");
         ResultSet rs = ps.executeQuery();
         Product pd = null;
         while(rs.next()){
@@ -124,9 +124,9 @@ public class ProductManager {
     
     
      public boolean Check_TenMH(String TenMH) throws SQLException{
-            String query = "Select *  FROM MATHANG WHERE TenMH =?;";
+            String query = "Select *  FROM MATHANG WHERE TenMH like ?";
             PreparedStatement ps = this.conn.prepareStatement(query);
-            ps.setString(1, TenMH);
+            ps.setString(1, "%"+TenMH+"%");
             ResultSet rs = ps.executeQuery();
             if(rs.next())return true;
             else return false;
@@ -134,9 +134,9 @@ public class ProductManager {
      
      public List<Product> getListMH_follow_TenMH(String TenMH) throws SQLException{
         List<Product> ListMH_follow_TenMH = new ArrayList<>();
-        String query = "Select * from MATHANG where TenMH = ?";
+        String query = "Select * from MATHANG where TenMH like ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, TenMH);
+        ps.setString(1, "%"+TenMH+"%");
         ResultSet rs = ps.executeQuery();
         Product pd = null;
         while(rs.next()){
@@ -158,18 +158,18 @@ public class ProductManager {
      
      
       public boolean Check_LoaiMH(String LoaiMH) throws SQLException{
-            String query = "Select *  FROM MATHANG WHERE LoaiMH =?;";
+            String query = "Select *  FROM MATHANG WHERE LoaiMH like ?";
             PreparedStatement ps = this.conn.prepareStatement(query);
-            ps.setString(1, LoaiMH);
+            ps.setString(1, "%"+LoaiMH+"%");
             ResultSet rs = ps.executeQuery();
             if(rs.next())return true;
             else return false;
     }
       public List<Product> getListMH_follow_LoaiMH(String LoaiMH) throws SQLException{
         List<Product> ListMH_follow_LoaiMH = new ArrayList<>();
-        String query = "Select * from MATHANG where LoaiMH = ?";
+        String query = "Select * from MATHANG where LoaiMH like ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, LoaiMH);
+        ps.setString(1, "%"+LoaiMH+"%");
         ResultSet rs = ps.executeQuery();
         Product pd = null;
         while(rs.next()){
@@ -191,18 +191,18 @@ public class ProductManager {
       
       
        public boolean Check_HangSX(String HangSX) throws SQLException{
-            String query = "Select *  FROM MATHANG WHERE HangSX =?;";
+            String query = "Select *  FROM MATHANG WHERE HangSX like ?";
             PreparedStatement ps = this.conn.prepareStatement(query);
-            ps.setString(1, HangSX);
+            ps.setString(1, "%"+HangSX+"%");
             ResultSet rs = ps.executeQuery();
             if(rs.next())return true;
             else return false;
     }
        public List<Product> getListMH_follow_HangSX(String HangSX) throws SQLException{
         List<Product> ListMH_follow_HangSX = new ArrayList<>();
-        String query = "Select * from MATHANG where HangSX = ?";
+        String query = "Select * from MATHANG where HangSX like ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, HangSX);
+        ps.setString(1, "%"+HangSX+"%");
         ResultSet rs = ps.executeQuery();
         Product pd = null;
         while(rs.next()){

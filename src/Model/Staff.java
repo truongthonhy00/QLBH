@@ -16,7 +16,7 @@ public class Staff extends Person{
     private float ngayCong;
     private float heSoLuong;
     private int luong;
-    private String MaSoThue;
+    private int MaSoThue;
 
     public Staff(){        
     }
@@ -36,11 +36,11 @@ public class Staff extends Person{
         this.maNV = maNV;
     }
     
-    public String getMaSoThue() {
+    public int getMaSoThue() {
         return MaSoThue;
     }
 
-    public void setMaSoThue(String MaSoThue) {
+    public void setMaSoThue(int MaSoThue) {
         this.MaSoThue = MaSoThue;
     }
 

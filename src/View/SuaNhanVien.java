@@ -590,6 +590,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
             Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+              JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng, mời nhập lại");
         }
              
     }                                          

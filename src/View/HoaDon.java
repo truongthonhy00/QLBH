@@ -39,13 +39,9 @@ public class HoaDon extends javax.swing.JFrame {
             
                //Đưa tên nhân viên lập hóa đơn lên hóa đơn
             int MaNVHT = sm.getMaNVHT_follow_Status(1);   //Lấy Mã nhân viên đăng nhập
-            if(MaNVHT != 0)
-            {
-                Staff nv = sm.getDetail(MaNVHT);              //Lấy nhân viên đăng nhập theo mã nhân viên vừa lấy được
-                String NameNVHT = nv.getName();               //Lấy tên nhân viên
-                jl_NameNV_Lap_HD.setText(NameNVHT);           //Đưa tên nhân viên lên hóa đơn
-            }
-            else jl_NameNV_Lap_HD.setText("ADMIN"); 
+            Staff nv = sm.getDetail(MaNVHT);              //Lấy nhân viên đăng nhập theo mã nhân viên vừa lấy được
+            String NameNVHT = nv.getName();               //Lấy tên nhân viên
+            jl_NameNV_Lap_HD.setText(NameNVHT);           //Đưa tên nhân viên lên hóa đơn
             
             //Lấy KH có trạng thái là 1 (KH mới được thêm từ bên giỏ hàng thì sẽ có trạng thái là 1)
             this.listKH = sm.getListKH(1);  
