@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class ProductManager {
     
     public void addProduct(String MaMH, String TenMH, String LoaiMH, String HangSx, int SoLuong, int DonGia) throws SQLException{
         String query2 = "insert MATHANG values(?, ?, ?, ?, ?, ?)";
-        PreparedStatement ps = this.conn.prepareStatement(query2);       
+        PreparedStatement ps = this.conn.prepareStatement(query2);
         ps.setString(1, MaMH);
         ps.setString(2, TenMH);
         ps.setString(3, LoaiMH);
@@ -75,9 +74,9 @@ public class ProductManager {
     }
     
     public String getMaMH(String tenMH) throws SQLException{
-        String query = "Select * from MATHANG where TenMH like ?";
+        String query = "Select * from MATHANG where TenMH = ?";
         PreparedStatement ps = this.conn.prepareStatement(query);
-        ps.setString(1, "%"+tenMH+"%");
+        ps.setString(1, tenMH);
         ResultSet rs = ps.executeQuery();
         String maMH = "";
         if (rs.next()){
@@ -87,7 +86,11 @@ public class ProductManager {
     }
     
     
-           //Phục vụ tìm kiếm
+    
+    
+    
+    
+            //Phục vụ tìm kiếm
     public boolean check_MaMH(String maMH) throws SQLException{
         String query = "Select * from MATHANG  where MaMH like ?";
         PreparedStatement ps = this.conn.prepareStatement(query);

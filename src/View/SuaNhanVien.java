@@ -543,90 +543,127 @@ public class SuaNhanVien extends javax.swing.JFrame {
         }
     }                                                
 
-    private void jbt_Luu_NVActionPerformed(java.awt.event.ActionEvent evt) {  
-        int flag=0;
+    private void jbt_Luu_NVActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        df.setLenient(false);
+        int flag = 0;
         try {           
             String maNV = jl_MaNV.getText();
             String hoTen = tf_TenNV.getText();
             String Text_ngaySinh = tf_NgaySinhNV.getText();
             String diaChi = tf_DiaChiNV.getText();
-            flag=1;
+            flag = 1;
             int phone = Integer.parseInt(tf_SDTNV.getText());
-            flag=2;
+            flag = 2;
             float ngayCong = Float.parseFloat(tf_NgayCongNV.getText());
-            flag=3;
-            float heSoLuong = Float.parseFloat(tf_HSLNV.getText());    
+            flag = 3;
+            float heSoLuong = Float.parseFloat(tf_HSLNV.getText());
             float luong = Float.parseFloat(jl_TongLuongNV.getText());
             
-            //Xử lý lỗi để trống
-            if (maNV.equals("") || hoTen.equals("") || Text_ngaySinh.equals("") || diaChi.equals("") ||
-                    (!jrb_Nam.isSelected() && !jrb_Nu.isSelected()) || String.valueOf(phone).equals("") || String.valueOf(ngayCong).equals("") ||String.valueOf( heSoLuong).equals("") ){
+            df.parse(Text_ngaySinh);
+            Date ngaySinh1 = new SimpleDateFormat("yyyy/MM/dd").parse(Text_ngaySinh);
+            
+                     //Xử lý lỗi để trống
+            if (hoTen.equals("") || Text_ngaySinh.equals("") || diaChi.equals("") ||
+                    (!jrb_Nam.isSelected() && !jrb_Nu.isSelected()) || String.valueOf(phone).equals("") || String.valueOf(ngayCong).equals("") || String.valueOf(heSoLuong).equals("") ){
                 JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
             }
             else 
             {
-                StaffManager sm = new StaffManager();
-                SimpleDateFormat mySimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date Date_NgaySinh = (mySimpleDateFormat.parse(Text_ngaySinh));
+                try{
+                    StaffManager sm = new StaffManager();
+                    SimpleDateFormat mySimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    Date Date_NgaySinh = (mySimpleDateFormat.parse(Text_ngaySinh));
             
-                sm.updateNV((Integer.parseInt(maNV)), hoTen, Date_NgaySinh, diaChi, jrb_Nam.isSelected()?"Nam":"Nữ", phone, ngayCong, heSoLuong, luong);
-                JOptionPane.showMessageDialog(null, "Thay đổi thông tin nhân viên thành công!");
+                    sm.updateNV((Integer.parseInt(maNV)), hoTen, ngaySinh1, diaChi, jrb_Nam.isSelected()?"Nam":"Nữ", phone, ngayCong, heSoLuong, luong);
+                    JOptionPane.showMessageDialog(null, "Thay đổi thông tin nhân viên thành công!");
                             
-                    //Xóa dữ liệu trên các Text
-                  jl_MaNV.setText("");
-                  tf_TenNV.setText("");
-                  tf_NgaySinhNV.setText("");
-                  tf_DiaChiNV.setText("");
-                  tf_SDTNV.setText("");
-                  tf_NgayCongNV.setText("");
-                  tf_HSLNV.setText("");
-                  jl_TongLuongNV.setText("0");
-                  buttonGroupNam_Nu.clearSelection(); 
+                      //Xóa dữ liệu trên các Text
+                    jl_MaNV.setText("");
+                    tf_TenNV.setText("");
+                    tf_NgaySinhNV.setText("");
+                    tf_DiaChiNV.setText("");
+                    tf_SDTNV.setText("");
+                    tf_NgayCongNV.setText("");
+                    tf_HSLNV.setText("");
+                    jl_TongLuongNV.setText("0");
+                    buttonGroupNam_Nu.clearSelection(); 
                             
-                      //Cập nhật lại bảng
-                  Model model = new Model();
-                  this.list = sm.getListNV();
-                  this.tb_NV.setModel(model);       
+                        //Cập nhật lại bảng
+                    Model model = new Model();
+                    this.list = sm.getListNV();
+                    this.tb_NV.setModel(model);       
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                catch (Exception ex) {
+                    Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } catch (ParseException ex) {
-             JOptionPane.showMessageDialog(rootPane, "bạn đã nhập ngày sinh không hợp lệ, mời nhập lại");
-        }catch (NumberFormatException ex) {
-                     switch(flag){
-               case 1:{
-                   JOptionPane.showMessageDialog(null, "bạn đã nhập số điện thoại không hợp lệ");
-                   break;
-               }
-               case 2:{
-                   JOptionPane.showMessageDialog(null, "bạn đã nhập ngày công không hợp lệ");
-                   break;
-               }
-               case 3:
-               {
-                   JOptionPane.showMessageDialog(null, "bạn đã nhập hệ số lương không hợp lệ");
-                   break;
-               }
-                     }    
-    }  catch (Exception ex) {
-            Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-             
-        }
-             
-    }                                          
+            JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai ngày sinh!\nVui lòng nhập lại!");
+            tf_NgaySinhNV.setText("");
+        } catch (NumberFormatException ex){
+            switch(flag)
+            {
+                case 1:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho số điện thoại!\nVui lòng nhập lại!");
+                    tf_SDTNV.setText("");
+                    break;
+                }
+                 case 2:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho ngày công!\nVui lòng nhập lại!");
+                    tf_NgayCongNV.setText("");
+                    break;
+                }
+                 case 3:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho hệ số lương!\nVui lòng nhập lại!");
+                    tf_HSLNV.setText("");
+                    break;
+                }
+            }
+        }        
+    }   
 
     private void jtb_QuayLaiActionPerformed(java.awt.event.ActionEvent evt) {                                            
         this.setVisible(false);
     }                                           
 
     private void jbt_TinhLuongActionPerformed(java.awt.event.ActionEvent evt) {                                              
-       String ngayCong = tf_NgayCongNV.getText();
-        String heSoLuong = tf_HSLNV.getText(); 
-        if (ngayCong.equals("") || heSoLuong.equals("")){
+        int flag = 0;
+        try {  
+            flag = 1;
+            float ngayCong = Float.parseFloat(tf_NgayCongNV.getText());
+            flag = 2;
+            float heSoLuong = Float.parseFloat(tf_HSLNV.getText());
+            if (String.valueOf(ngayCong).equals("") || String.valueOf(heSoLuong).equals("")){
             JOptionPane.showMessageDialog(null, "Chưa nhập Ngày công hoặc Hệ số lương");
-        }
-        else{
-            float Luong = Float.parseFloat(ngayCong)*Float.parseFloat(heSoLuong)*200000;
-            int luong = (int)Luong;
-            jl_TongLuongNV.setText(Integer.toString(luong));
+            }
+            else
+            {
+                float Luong = ngayCong * heSoLuong *200000;
+                int luong = (int)Luong;
+                jl_TongLuongNV.setText(Integer.toString(luong));
+            }
+        } catch (NumberFormatException ex){
+            switch(flag)
+            {
+                 case 1:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho ngày công!\nVui lòng nhập lại!");
+                    tf_NgayCongNV.setText("");
+                    break;
+                }
+                 case 2:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho hệ số lương!\nVui lòng nhập lại!");
+                    tf_HSLNV.setText("");
+                    break;
+                }
+            }
         }
     }                                             
     

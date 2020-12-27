@@ -221,22 +221,24 @@ public class AddNhanVien extends javax.swing.JFrame {
         this.setVisible(false);
     }                                             
 
-    private void btn_AddNVActionPerformed(java.awt.event.ActionEvent evt) { 
-        int flag=0;
-        try {
-            
+    private void btn_AddNVActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        df.setLenient(false);
+        int flag = 0;
         try {        
             String hoTen = tfHoTenNV.getText();
             String ngaySinh = tf_DateofbirthNV.getText();
             String diaChi = tf_AddressNV.getText();
-            flag=1;
+            flag = 1;
             int phone = Integer.parseInt(tf_PhoneNV.getText());
-            flag=2;
-            int ngayCong = Integer.parseInt(tf_Workday.getText());
-            flag=3;
-            float heSoLuong =Float.parseFloat( tf_CoefficientNV.getText());
-            String luong = jl_TongLuong.getText();
-            Date ngaySinh1 = new SimpleDateFormat("yyyy-MM-dd").parse(ngaySinh);
+            flag = 2;
+            float ngayCong = Float.parseFloat(tf_Workday.getText());
+            flag = 3;
+            float heSoLuong = Float.parseFloat(tf_CoefficientNV.getText());
+            float luong = Float.parseFloat(jl_TongLuong.getText());
+            
+            df.parse(ngaySinh);
+            Date ngaySinh1 = new SimpleDateFormat("yyyy/MM/dd").parse(ngaySinh);
             if (hoTen.equals("") || ngaySinh.equals("") || diaChi.equals("") ||
                     (!RbtnNam.isSelected() && !RbtnNu.isSelected()) || String.valueOf(phone).equals("") || String.valueOf(ngayCong).equals("") || String.valueOf(heSoLuong).equals("") ){
                 JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
@@ -244,7 +246,7 @@ public class AddNhanVien extends javax.swing.JFrame {
             else {
                 try {
                     StaffManager sm = new StaffManager();
-                    sm.addNV(hoTen, ngaySinh1, diaChi, RbtnNam.isSelected()?"Nam":"Nữ", phone, ngayCong, heSoLuong, Float.parseFloat(luong));
+                    sm.addNV(hoTen, ngaySinh1, diaChi, RbtnNam.isSelected()?"Nam":"Nữ", phone, ngayCong, heSoLuong, luong);
                     JOptionPane.showMessageDialog(null, "Thêm thành công!");  
                     tfHoTenNV.setText("");
                     tf_DateofbirthNV.setText("");
@@ -254,50 +256,74 @@ public class AddNhanVien extends javax.swing.JFrame {
                     tf_CoefficientNV.setText("");
                     jl_TongLuong.setText("");
                     buttonGroup1.clearSelection(); 
-                }  catch (Exception ex) {
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AddNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
                     Logger.getLogger(AddNhanVien.class.getName()).log(Level.SEVERE, null, ex);
                 }               
             }
         } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(tf_DateofbirthNV, "bạn đã nhập ngày sinh không hợp lê");
-            
-        }
-        } catch (NumberFormatException ex) {
-                     switch(flag){
-               case 1:{
-                   JOptionPane.showMessageDialog(tf_PhoneNV, "bạn đã nhập số điện thoại không hợp lệ");
-                   break;
-               }
-               case 2:{
-                   JOptionPane.showMessageDialog(tf_Workday, "bạn đã nhập ngày công không hợp lệ");
-                   break;
-               }
-               case 3:
-               {
-                   JOptionPane.showMessageDialog(tf_CoefficientNV, "bạn đã nhập hệ số lương không hợp lệ");
-                   break;
-               }
-                
-    }       
-        }}
-    
-    
+            JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai ngày sinh!\nVui lòng nhập lại!");
+            tf_DateofbirthNV.setText("");
+        } catch (NumberFormatException ex){
+            switch(flag)
+            {
+                case 1:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho số điện thoại!\nVui lòng nhập lại!");
+                    tf_PhoneNV.setText("");
+                    break;
+                }
+                 case 2:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho ngày công!\nVui lòng nhập lại!");
+                    tf_Workday.setText("");
+                    break;
+                }
+                 case 3:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho hệ số lương!\nVui lòng nhập lại!");
+                    tf_CoefficientNV.setText("");
+                    break;
+                }
+            }
+        }        
+    }                                         
 
     private void btn_SalaryActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        String ngayCong = tf_Workday.getText();
-        String heSoLuong = tf_CoefficientNV.getText(); 
-        if (ngayCong.equals("") || heSoLuong.equals("")){
-            JOptionPane.showMessageDialog(null, "Chưa nhập Ngày công hoặc Hệ số lương!");
-        }
-        else{
-            try {
-                float Luong = Float.parseFloat(ngayCong)*Float.parseFloat(heSoLuong)*200000;
-            int luong = (int)Luong;
-            jl_TongLuong.setText(Integer.toString(luong));
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, "không tính được lương, do bạn nhập sai ngày công hoặc hệ số lương!");
+        int flag = 0;
+        try {  
+            flag = 1;
+            float ngayCong = Float.parseFloat(tf_Workday.getText());
+            flag = 2;
+            float heSoLuong = Float.parseFloat(tf_CoefficientNV.getText());
+            if (String.valueOf(ngayCong).equals("") || String.valueOf(heSoLuong).equals("")){
+            JOptionPane.showMessageDialog(null, "Chưa nhập Ngày công hoặc Hệ số lương");
             }
-        }       
+            else
+            {
+                float Luong = ngayCong * heSoLuong *200000;
+                int luong = (int)Luong;
+                jl_TongLuong.setText(Integer.toString(luong));
+                tfHoTenNV.setText("");
+            }
+        } catch (NumberFormatException ex){
+            switch(flag)
+            {
+                 case 1:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho ngày công!\nVui lòng nhập lại!");
+                    tf_Workday.setText("");
+                    break;
+                }
+                 case 2:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho hệ số lương!\nVui lòng nhập lại!");
+                    tf_CoefficientNV.setText("");
+                    break;
+                }
+            }
+        }     
     }                                          
               
     private javax.swing.JRadioButton RbtnNam;

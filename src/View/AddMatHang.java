@@ -7,8 +7,6 @@ package View;
 
 import Controller.ProductManager;
 import Model.Product;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -169,65 +167,57 @@ public class AddMatHang extends javax.swing.JFrame {
         this.setVisible(false);
     }                                          
 
-    private void btn_AddMHActionPerformed(java.awt.event.ActionEvent evt) {  
-       
+    private void btn_AddMHActionPerformed(java.awt.event.ActionEvent evt) {                                          
         int flag = 0;
-        try {
-        String MaMH = tf_IDMH.getText();
-        String TenMH = tfl_NameMH.getText();
-        String HangSx = tf_ProducerMH.getText();
-        String LoaiMH = tf_TypeMH.getText();
-          flag=1;
-        int SoLuong = Integer.parseInt(tf_AmountMH.getText());
-          flag=2;
-        int DonGia = Integer.parseInt(tfl_PriceMH.getText());
-       
-        if (TenMH.equals("") || HangSx.equals("") || String.valueOf(SoLuong).equals("") || String.valueOf(DonGia).equals("")||MaMH.equals("")||LoaiMH.equals("")){
+        try
+        {
+            String MaMH = tf_IDMH.getText();
+            String TenMH = tfl_NameMH.getText();
+            String HangSx = tf_ProducerMH.getText();
+            String LoaiMH = tf_TypeMH.getText();
+            flag = 1;
+            int SoLuong = Integer.parseInt(tf_AmountMH.getText());
+            flag = 2;
+            int DonGia = Integer.parseInt(tfl_PriceMH.getText());
+            if (TenMH.equals("") || HangSx.equals("") || String.valueOf(SoLuong).equals("") || String.valueOf(DonGia).equals("")||MaMH.equals("")||LoaiMH.equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
-        }
-        
-        else  {
-            try {
-                
-                ProductManager pm = new ProductManager();
-                pm.addProduct(MaMH, TenMH, HangSx,LoaiMH, SoLuong, DonGia);
-                JOptionPane.showMessageDialog(null, "Thêm thành công!");   
-                tf_IDMH.setText("");
-                tfl_NameMH.setText("");
-                 tf_ProducerMH.setText("");
-                tf_TypeMH.setText("");
-                tf_AmountMH.setText("");     
-                tfl_PriceMH.setText("");
-                
-                
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AddMatHang.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception ex) {
-                Logger.getLogger(AddMatHang.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        
-     
-             
-        }
-       
-        } catch (NumberFormatException e) {
-           switch(flag){
-               case 1:{
-                   JOptionPane.showMessageDialog(null, "nhập sai số lượng");
-                   break;
-               }
-               case 2:{
-                   JOptionPane.showMessageDialog(null, "nhập sai đơn giá");
-                   break;
-               }
-           }
-            
-            
-        }
-       
-    }                                        
-  
+            else {
+                try {
+                    ProductManager pm = new ProductManager();
+                    pm.addProduct(MaMH, TenMH, HangSx,LoaiMH, SoLuong, DonGia);
+                    JOptionPane.showMessageDialog(null, "Thêm thành công!");   
+                    tf_IDMH.setText("");
+                    tfl_NameMH.setText("");
+                    tf_ProducerMH.setText("");
+                    tf_TypeMH.setText("");
+                    tf_AmountMH.setText("");     
+                    tfl_PriceMH.setText("");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AddMatHang.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(AddMatHang.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (NumberFormatException ex){
+            switch(flag)
+            {
+                case 1:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho số lượng!\nVui lòng nhập lại!");
+                    tf_AmountMH.setText("");
+                    break;
+                }
+                 case 2:
+                {
+                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho đơn giá!\nVui lòng nhập lại!");
+                    tfl_PriceMH.setText("");
+                    break;
+                }
+            }
+        } 
+    }                                         
+
                  
     private javax.swing.JButton btn_AddMH;
     private javax.swing.JButton btn_BackMH;

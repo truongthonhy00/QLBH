@@ -90,7 +90,7 @@ public class StaffManager {
     
     public boolean updateNV(int maNV, String hoTen, Date ngaySinh, String diaChi, String gioiTinh, int phone, float ngayCong, float heSoLuong, float Luong) throws SQLException{
         if (this.Check_MaNV(maNV)){
-            SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat DateFor = new SimpleDateFormat("yyyy/MM/dd");
             String stringDate= DateFor.format(ngaySinh);
             String query = "update NHANVIEN " + "SET HoTen = ?, NgaySinh = ? , DiaChi = ?, GioiTinh = ?, SDT = ?, NgayCong = ?, HeSoLuong = ?, Luong = ? WHERE NHANVIEN.manv=?";
             PreparedStatement ps2 = this.conn.prepareStatement(query);
@@ -319,7 +319,7 @@ public class StaffManager {
             kh.setName(rs.getString("HoTen"));
             kh.setAddress(rs.getString("DiaChi"));
             kh.setPhone(rs.getInt("SDT"));
-            kh.setMaSoThue(rs.getInt("MaSoThue"));
+            kh.setMaSoThue(rs.getString("MaSoThue"));
             kh.setLuong(rs.getInt("TongHD")); 
             ListKH.add(kh);
         } 
