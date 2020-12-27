@@ -543,20 +543,24 @@ public class SuaNhanVien extends javax.swing.JFrame {
         }
     }                                                
 
-    private void jbt_Luu_NVActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void jbt_Luu_NVActionPerformed(java.awt.event.ActionEvent evt) {  
+        int flag=0;
         try {           
             String maNV = jl_MaNV.getText();
             String hoTen = tf_TenNV.getText();
             String Text_ngaySinh = tf_NgaySinhNV.getText();
             String diaChi = tf_DiaChiNV.getText();
-            String phone = tf_SDTNV.getText();
-            String ngayCong = tf_NgayCongNV.getText();
-            String heSoLuong = tf_HSLNV.getText();    
-            String luong = jl_TongLuongNV.getText();
+            flag=1;
+            int phone = Integer.parseInt(tf_SDTNV.getText());
+            flag=2;
+            float ngayCong = Float.parseFloat(tf_NgayCongNV.getText());
+            flag=3;
+            float heSoLuong = Float.parseFloat(tf_HSLNV.getText());    
+            float luong = Float.parseFloat(jl_TongLuongNV.getText());
             
             //Xử lý lỗi để trống
             if (maNV.equals("") || hoTen.equals("") || Text_ngaySinh.equals("") || diaChi.equals("") ||
-                    (!jrb_Nam.isSelected() && !jrb_Nu.isSelected()) || phone.equals("") || ngayCong.equals("") || heSoLuong.equals("") ){
+                    (!jrb_Nam.isSelected() && !jrb_Nu.isSelected()) || String.valueOf(phone).equals("") || String.valueOf(ngayCong).equals("") ||String.valueOf( heSoLuong).equals("") ){
                 JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
             }
             else 
@@ -565,7 +569,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
                 SimpleDateFormat mySimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date Date_NgaySinh = (mySimpleDateFormat.parse(Text_ngaySinh));
             
-                sm.updateNV((Integer.parseInt(maNV)), hoTen, Date_NgaySinh, diaChi, jrb_Nam.isSelected()?"Nam":"Nữ", Integer.parseInt(phone), Float.parseFloat(ngayCong), Float.parseFloat(heSoLuong), Float.parseFloat(luong));
+                sm.updateNV((Integer.parseInt(maNV)), hoTen, Date_NgaySinh, diaChi, jrb_Nam.isSelected()?"Nam":"Nữ", phone, ngayCong, heSoLuong, luong);
                 JOptionPane.showMessageDialog(null, "Thay đổi thông tin nhân viên thành công!");
                             
                     //Xóa dữ liệu trên các Text
@@ -585,12 +589,26 @@ public class SuaNhanVien extends javax.swing.JFrame {
                   this.tb_NV.setModel(model);       
             }
         } catch (ParseException ex) {
+             JOptionPane.showMessageDialog(rootPane, "bạn đã nhập ngày sinh không hợp lệ, mời nhập lại");
+        }catch (NumberFormatException ex) {
+                     switch(flag){
+               case 1:{
+                   JOptionPane.showMessageDialog(null, "bạn đã nhập số điện thoại không hợp lệ");
+                   break;
+               }
+               case 2:{
+                   JOptionPane.showMessageDialog(null, "bạn đã nhập ngày công không hợp lệ");
+                   break;
+               }
+               case 3:
+               {
+                   JOptionPane.showMessageDialog(null, "bạn đã nhập hệ số lương không hợp lệ");
+                   break;
+               }
+                     }    
+    }  catch (Exception ex) {
             Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (ClassNotFoundException ex) {
-            Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-              JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng, mời nhập lại");
+             
         }
              
     }                                          

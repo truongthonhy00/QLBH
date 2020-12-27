@@ -521,25 +521,28 @@ public class SuaMatHang extends javax.swing.JFrame {
     }
 
 
-    private void jb_saveActionPerformed(java.awt.event.ActionEvent evt) {                                        
+    private void jb_saveActionPerformed(java.awt.event.ActionEvent evt) {  
+        int flag=0;
  try {      
             String MaMH = Text_MaMH.getText();
             String TenMH = tf_TenMH.getText();
             String LoaiMH = tf_HangSX.getText();
             String HangSX = tf_HangSX.getText();
-            String SoLuong= tf_SoLuong.getText();
-            String DonGia =tf_DonGia.getText();
+            flag=1;
+            int SoLuong= Integer.parseInt(tf_SoLuong.getText());
+            flag=2;
+            int DonGia =Integer.parseInt(tf_DonGia.getText());
 
 
             //Xử lý lỗi để trống
             if (MaMH.equals("") ||TenMH.equals("") || LoaiMH.equals("") || HangSX.equals("") ||
-                     SoLuong.equals("") || DonGia.equals("")  ){
+                     String.valueOf(SoLuong).equals("") || String.valueOf(DonGia).equals("")  ){
                 JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
             }
             else 
             {
                 ProductManager pm = new ProductManager();
-                pm.updateMH_After_Repair(MaMH,TenMH,LoaiMH,HangSX,Integer.parseInt(SoLuong),Integer.parseInt(DonGia));
+                pm.updateMH_After_Repair(MaMH,TenMH,LoaiMH,HangSX,SoLuong,DonGia);
                 JOptionPane.showMessageDialog(null, "Thay đổi thông tin mặt hàng thành công!");
 
                     //Xóa dữ liệu trên các Text
@@ -556,13 +559,22 @@ public class SuaMatHang extends javax.swing.JFrame {
                   this.listMH = pm.getListMH();
                   this.tb_MH.setModel(model);       
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException ex) {
+            switch(flag){
+                case 1:{
+                    JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng số lượng, mời bạn nhập lại");
+                    break;
+                }
+                case 2:{
+                    JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng đơn giá, mời bạn nhập lại");
+                    break;
+                }
+            }
         }catch (ClassNotFoundException ex) {
             Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-              JOptionPane.showMessageDialog(rootPane, "nhập sai định dạng, mời nhập lại");
+              
         }        
     }
 

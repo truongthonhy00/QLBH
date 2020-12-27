@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class ProductManager {
     
     public void addProduct(String MaMH, String TenMH, String LoaiMH, String HangSx, int SoLuong, int DonGia) throws SQLException{
         String query2 = "insert MATHANG values(?, ?, ?, ?, ?, ?)";
-        PreparedStatement ps = this.conn.prepareStatement(query2);
+        PreparedStatement ps = this.conn.prepareStatement(query2);       
         ps.setString(1, MaMH);
         ps.setString(2, TenMH);
         ps.setString(3, LoaiMH);
