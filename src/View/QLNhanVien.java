@@ -99,28 +99,32 @@ public class QLNhanVien extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")                     
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel1 = new javax.swing.JPanel();
+        jl_QLNV = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbStaff = new javax.swing.JTable();
-        jl_QLNV = new javax.swing.JLabel();
-        btn_AddNV = new javax.swing.JButton();
-        btn_ChangeNV = new javax.swing.JButton();
         jc_SearchNV = new javax.swing.JComboBox<>();
         jt_SearchNV = new javax.swing.JTextField();
+        btn_AddNV = new javax.swing.JButton();
         jbn_DeleteNV = new javax.swing.JButton();
         jbt_UpdateNV = new javax.swing.JButton();
         btn_BackNV = new javax.swing.JButton();
+        btn_ChangeNV = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        tbStaff.setFont(new java.awt.Font("Tahoma", 0, 12)); 
+        jPanel1.setOpaque(false);
+
+        jl_QLNV.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jl_QLNV.setForeground(java.awt.Color.white);
+        jl_QLNV.setText("QUẢN LÝ NHÂN VIÊN");
+
         tbStaff.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -134,22 +138,23 @@ public class QLNhanVien extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã nhân viên", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Số điện thoại", "Ngày công", "Hệ số lương", "Lương"
+                "Mã nhân viên", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ", "SĐT", "Ngày công", "Hệ số lương", "Lương"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Byte.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Byte.class, java.lang.Long.class, java.lang.Float.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tbStaff);
 
-        jl_QLNV.setFont(new java.awt.Font("Tahoma", 1, 14)); 
-        jl_QLNV.setText("QUẢN LÝ NHÂN VIÊN");
+        jc_SearchNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jc_SearchNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm Mã", "Tìm Tên", "Tìm SĐT" }));
+        jc_SearchNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jc_SearchNVActionPerformed(evt);
+            }
+        });
 
+        btn_AddNV.setBackground(new java.awt.Color(0, 102, 102));
+        btn_AddNV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_AddNV.setForeground(java.awt.Color.white);
+        btn_AddNV.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\thêm 23.png")); // NOI18N
         btn_AddNV.setText("Thêm");
         btn_AddNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,27 +162,21 @@ public class QLNhanVien extends javax.swing.JFrame {
             }
         });
 
-        btn_ChangeNV.setText("Sửa");
-        btn_ChangeNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ChangeNVActionPerformed(evt);
-            }
-        });
-
-        jc_SearchNV.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm kiếm Mã", "Tìm kiếm Tên", "Tìm kiếm SĐT" }));
-        jc_SearchNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jc_SearchNVActionPerformed(evt);
-            }
-        });
-
-        jbn_DeleteNV.setText("Xóa");
+        jbn_DeleteNV.setBackground(new java.awt.Color(0, 102, 102));
+        jbn_DeleteNV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbn_DeleteNV.setForeground(java.awt.Color.white);
+        jbn_DeleteNV.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\xoá.png")); // NOI18N
+        jbn_DeleteNV.setText("Xoá");
         jbn_DeleteNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbn_DeleteNVActionPerformed(evt);
             }
         });
 
+        jbt_UpdateNV.setBackground(new java.awt.Color(0, 102, 102));
+        jbt_UpdateNV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbt_UpdateNV.setForeground(java.awt.Color.white);
+        jbt_UpdateNV.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\cập nhật 23.png")); // NOI18N
         jbt_UpdateNV.setText("Cập nhật");
         jbt_UpdateNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +184,10 @@ public class QLNhanVien extends javax.swing.JFrame {
             }
         });
 
+        btn_BackNV.setBackground(new java.awt.Color(0, 102, 102));
+        btn_BackNV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_BackNV.setForeground(java.awt.Color.white);
+        btn_BackNV.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\thoát 23.png")); // NOI18N
         btn_BackNV.setText("Quay lại");
         btn_BackNV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,67 +195,91 @@ public class QLNhanVien extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jc_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jt_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btn_AddNV, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(btn_ChangeNV, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(jbn_DeleteNV)
-                        .addGap(65, 65, 65)
-                        .addComponent(jbt_UpdateNV)
-                        .addGap(54, 54, 54)
-                        .addComponent(btn_BackNV)
-                        .addGap(55, 55, 55)))
-                .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+        btn_ChangeNV.setBackground(new java.awt.Color(0, 102, 102));
+        btn_ChangeNV.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_ChangeNV.setForeground(java.awt.Color.white);
+        btn_ChangeNV.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\sửa 23.png")); // NOI18N
+        btn_ChangeNV.setText("Sửa");
+        btn_ChangeNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ChangeNVActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jl_QLNV)
-                .addGap(313, 313, 313))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(269, 269, 269))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 35, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_AddNV, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(btn_ChangeNV, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jbn_DeleteNV, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(jbt_UpdateNV)
+                                .addGap(30, 30, 30)
+                                .addComponent(btn_BackNV, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jc_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jt_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75))))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jl_QLNV, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jc_SearchNV)
-                    .addComponent(jt_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 101, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jl_QLNV)
+                .addGap(74, 74, 74)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jt_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jc_SearchNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(93, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_AddNV)
                             .addComponent(btn_ChangeNV)
                             .addComponent(jbn_DeleteNV)
                             .addComponent(jbt_UpdateNV)
                             .addComponent(btn_BackNV))
-                        .addGap(42, 42, 42))))
+                        .addGap(33, 33, 33))))
         );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\backgrounds\\snow800x600.gif")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jLabel1, gridBagConstraints);
+
         pack();
-    }
+    }// </editor-fold>  
     private void btn_AddNVActionPerformed(java.awt.event.ActionEvent evt) {                                          
         AddNhanVien nv = new AddNhanVien();
         nv.setVisible(true);
@@ -310,7 +337,7 @@ public class QLNhanVien extends javax.swing.JFrame {
         String Search = jc_SearchNV.getSelectedItem().toString();
         switch(Search)
         {
-            case "Tìm kiếm Mã":
+            case "Tìm Mã":
             {
                    //Lấy dữ liệu từ ô tìm kiếm
                 String Search_Text = jt_SearchNV.getText();
@@ -351,7 +378,7 @@ public class QLNhanVien extends javax.swing.JFrame {
                 }
                 break;
             }
-            case "Tìm kiếm Tên":
+            case "Tìm Tên":
             {
                    //Lấy dữ liệu từ ô tìm kiếm
                 String Search_Text = jt_SearchNV.getText();
@@ -392,7 +419,7 @@ public class QLNhanVien extends javax.swing.JFrame {
                 }
                 break;
             }
-            case "Tìm kiếm SĐT":
+            case "Tìm SĐT":
             {
                    //Lấy dữ liệu từ ô tìm kiếm
                 String Search_Text = jt_SearchNV.getText();
@@ -452,7 +479,9 @@ public class QLNhanVien extends javax.swing.JFrame {
     private javax.swing.JButton jbt_UpdateNV;
     private javax.swing.JLabel jl_QLNV;
     private javax.swing.JTextField jt_SearchNV;
-    private javax.swing.JTable tbStaff;              
+    private javax.swing.JTable tbStaff;   
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
 }
 
 

@@ -91,58 +91,89 @@ public class QLMatHang extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")                     
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jc_SearchMH = new javax.swing.JComboBox<>();
+        tf_SearchMH = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProduct = new javax.swing.JTable();
-        jl_ListMH = new javax.swing.JLabel();
-        btn_AddMH = new javax.swing.JButton();
-        btn_DeleteMH = new javax.swing.JButton();
-        tf_SearchMH = new javax.swing.JTextField();
-        jc_SearchMH = new javax.swing.JComboBox<>();
-        btn_UpdateMH = new javax.swing.JButton();
         btn_BackMH = new javax.swing.JButton();
+        btn_UpdateMH = new javax.swing.JButton();
+        btn_DeleteMH = new javax.swing.JButton();
         btn_ChangeMH = new javax.swing.JButton();
+        btn_AddMH = new javax.swing.JButton();
+        jl_ListMH = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        tbProduct.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        
-        jScrollPane1.setViewportView(tbProduct);
+        jPanel1.setOpaque(false);
 
-        jl_ListMH.setFont(new java.awt.Font("Tahoma", 1, 14)); 
-        jl_ListMH.setText("QUẢN LÝ MẶT HÀNG");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\quản lý mặt hàng 23.png")); // NOI18N
+        jLabel2.setText("QUẢN LÝ MẶT HÀNG");
 
-        btn_AddMH.setText("Thêm ");
-        btn_AddMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AddMHActionPerformed(evt);
-            }
-        });
-
-        btn_DeleteMH.setText("Xóa");
-        btn_DeleteMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DeleteMHActionPerformed(evt);
-            }
-        });
-
-        jc_SearchMH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm kiếm Mã", "Tìm kiếm Tên", "Tìm kiếm Loại", "Tìm kiếm Hãng" }));
+        jc_SearchMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jc_SearchMH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tìm Mã", "Tìm Tên", "Tìm Loại", "Tìm Hãng" }));
         jc_SearchMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jc_SearchMHActionPerformed(evt);
             }
         });
 
+        tbProduct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7"
+            }
+        ));
+        jScrollPane1.setViewportView(tbProduct);
+
+        btn_BackMH.setBackground(new java.awt.Color(0, 102, 102));
+        btn_BackMH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_BackMH.setForeground(new java.awt.Color(255, 255, 255));
+        btn_BackMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\thoát 23.png")); // NOI18N
+        btn_BackMH.setText("Quay lại");
+        btn_BackMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BackMHActionPerformed(evt);
+            }
+        });
+
+        btn_UpdateMH.setBackground(new java.awt.Color(0, 102, 102));
+        btn_UpdateMH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_UpdateMH.setForeground(new java.awt.Color(255, 255, 255));
+        btn_UpdateMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\cập nhật 23.png")); // NOI18N
         btn_UpdateMH.setText("Cập nhật");
         btn_UpdateMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,13 +181,21 @@ public class QLMatHang extends javax.swing.JFrame {
             }
         });
 
-        btn_BackMH.setText("Quay lại");
-        btn_BackMH.addActionListener(new java.awt.event.ActionListener() {
+        btn_DeleteMH.setBackground(new java.awt.Color(0, 102, 102));
+        btn_DeleteMH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_DeleteMH.setForeground(new java.awt.Color(255, 255, 255));
+        btn_DeleteMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\xoá.png")); // NOI18N
+        btn_DeleteMH.setText("Xoá");
+        btn_DeleteMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_BackMHActionPerformed(evt);
+                btn_DeleteMHActionPerformed(evt);
             }
         });
-        
+
+        btn_ChangeMH.setBackground(new java.awt.Color(0, 102, 102));
+        btn_ChangeMH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_ChangeMH.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ChangeMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\sửa 23.png")); // NOI18N
         btn_ChangeMH.setText("Sửa");
         btn_ChangeMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,63 +203,90 @@ public class QLMatHang extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jl_ListMH, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(286, 286, 286))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jc_SearchMH, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(tf_SearchMH, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(27, 27, 27)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btn_AddMH, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(btn_ChangeMH, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(btn_DeleteMH)
-                        .addGap(65, 65, 65)
-                        .addComponent(btn_UpdateMH)
-                        .addGap(54, 54, 54)
-                        .addComponent(btn_BackMH)
-                        .addGap(55, 55, 55)))
-                .addContainerGap(41, Short.MAX_VALUE))
+        btn_AddMH.setBackground(new java.awt.Color(0, 102, 102));
+        btn_AddMH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_AddMH.setForeground(new java.awt.Color(255, 255, 255));
+        btn_AddMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\thêm 23.png")); // NOI18N
+        btn_AddMH.setText("Thêm");
+        btn_AddMH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddMHActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jc_SearchMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tf_SearchMH, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(btn_AddMH, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btn_ChangeMH, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(btn_DeleteMH, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(btn_UpdateMH)
+                                .addGap(26, 26, 26)
+                                .addComponent(btn_BackMH, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(251, 251, 251)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 36, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jl_ListMH, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jc_SearchMH)
-                    .addComponent(tf_SearchMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_ChangeMH)
-                    .addComponent(btn_DeleteMH)
-                    .addComponent(btn_UpdateMH)
-                    .addComponent(btn_AddMH)
-                    .addComponent(btn_BackMH))
-                .addGap(22, 22, 22))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jc_SearchMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_SearchMH, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_AddMH)
+                            .addComponent(btn_ChangeMH)
+                            .addComponent(btn_DeleteMH)
+                            .addComponent(btn_UpdateMH)
+                            .addComponent(btn_BackMH))
+                        .addGap(30, 30, 30))))
         );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        jl_ListMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\backgrounds\\snow800x600.gif")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jl_ListMH, gridBagConstraints);
+
         pack();
-    }                   
+    }// </editor-fold>                             
 
     private void btn_AddMHActionPerformed(java.awt.event.ActionEvent evt) {                                          
         AddMatHang mh = new AddMatHang();
@@ -253,7 +319,7 @@ public class QLMatHang extends javax.swing.JFrame {
         String Search = jc_SearchMH.getSelectedItem().toString();
         switch(Search)
         {
-            case "Tìm kiếm Mã":
+            case "Tìm Mã":
             {
                    //Lấy dữ liệu từ ô tìm kiếm
                 String Search_Text = tf_SearchMH.getText();
@@ -294,7 +360,7 @@ public class QLMatHang extends javax.swing.JFrame {
                 }
                 break;
             }
-            case "Tìm kiếm Tên":
+            case "Tìm Tên":
             {
                    //Lấy dữ liệu từ ô tìm kiếm
                 String Search_Text = tf_SearchMH.getText();
@@ -335,7 +401,7 @@ public class QLMatHang extends javax.swing.JFrame {
                 }
                 break;
             }
-            case "Tìm kiếm Loại":
+            case "Tìm Loại":
             {
                    //Lấy dữ liệu từ ô tìm kiếm
                 String Search_Text = tf_SearchMH.getText();
@@ -376,7 +442,7 @@ public class QLMatHang extends javax.swing.JFrame {
                 }
                 break;
             }
-           case "Tìm kiếm Hãng":
+           case "Tìm Hãng":
                {
                    //Lấy dữ liệu từ ô tìm kiếm
                 String Search_Text = tf_SearchMH.getText();
@@ -460,6 +526,8 @@ public class QLMatHang extends javax.swing.JFrame {
     private javax.swing.JTable tbProduct;
     private javax.swing.JTextField tf_SearchMH;   
     private javax.swing.JButton btn_ChangeMH;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
 }
 
 

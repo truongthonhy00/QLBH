@@ -33,33 +33,58 @@ public class AddMatHang extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")                      
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jl_InformationMH = new javax.swing.JLabel();
-        jl_NameMH = new javax.swing.JLabel();
-        jl_ProducerMH = new javax.swing.JLabel();
-        tfl_NameMH = new javax.swing.JTextField();
-        tf_ProducerMH = new javax.swing.JTextField();
-        btn_AddMH = new javax.swing.JButton();
-        btn_BackMH = new javax.swing.JButton();
-        tf_AmountMH = new javax.swing.JTextField();
-        tfl_PriceMH = new javax.swing.JTextField();
-        jl_AmountMH = new javax.swing.JLabel();
-        jl_PriceMH = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jl_TypeMH = new javax.swing.JLabel();
         tf_TypeMH = new javax.swing.JTextField();
         jl_IDMH = new javax.swing.JLabel();
         tf_IDMH = new javax.swing.JTextField();
+        jl_NameMH = new javax.swing.JLabel();
+        tfl_NameMH = new javax.swing.JTextField();
+        jl_ProducerMH = new javax.swing.JLabel();
+        tf_ProducerMH = new javax.swing.JTextField();
+        jl_InformationMH = new javax.swing.JLabel();
+        jl_AmountMH = new javax.swing.JLabel();
+        tf_AmountMH = new javax.swing.JTextField();
+        jl_PriceMH = new javax.swing.JLabel();
+        tfl_PriceMH = new javax.swing.JTextField();
+        jl_VND = new javax.swing.JLabel();
+        btn_AddMH = new javax.swing.JButton();
+        btn_BackMH = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jl_InformationMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.setOpaque(false);
+
+        jl_TypeMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_TypeMH.setText("Phân loại");
+
+        jl_IDMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_IDMH.setText("Mã Mặt hàng:");
+
+        jl_NameMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_NameMH.setText("Tên Mặt hàng:");
+
+        jl_ProducerMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_ProducerMH.setText("Hãng Sản xuất:");
+
+        jl_InformationMH.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jl_InformationMH.setText("THÔNG TIN MẶT HÀNG");
 
-        jl_NameMH.setText("Tên mặt hàng:");
+        jl_AmountMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_AmountMH.setText("Số lượng:");
 
-        jl_ProducerMH.setText("Hãng sản xuất:");
+        jl_PriceMH.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_PriceMH.setText("Đơn giá:");
 
+        jl_VND.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_VND.setText("VND");
+
+        btn_AddMH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_AddMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\thêm 23.png")); // NOI18N
         btn_AddMH.setText("Thêm");
         btn_AddMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +92,8 @@ public class AddMatHang extends javax.swing.JFrame {
             }
         });
 
+        btn_BackMH.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_BackMH.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\thoát 23.png")); // NOI18N
         btn_BackMH.setText("Quay lại");
         btn_BackMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,94 +101,104 @@ public class AddMatHang extends javax.swing.JFrame {
             }
         });
 
-        jl_AmountMH.setText("Số lượng:");
-
-        jl_PriceMH.setText("Đơn giá:");
-
-        jLabel7.setText("đ");
-
-        jl_TypeMH.setText("Loại mặt hàng:");
-
-
-        jl_IDMH.setText("Mã mặt hàng");
-        
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_AddMH, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(btn_BackMH, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jl_ProducerMH)
-                                    .addComponent(jl_TypeMH)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jl_NameMH)
-                                    .addComponent(jl_AmountMH)
-                                    .addComponent(jl_PriceMH)
-                                    .addComponent(jl_IDMH))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tfl_NameMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jl_IDMH)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(tf_IDMH, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jl_ProducerMH)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_AddMH, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_ProducerMH, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(329, 329, 329)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jl_AmountMH)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tf_AmountMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jl_TypeMH)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfl_NameMH)
-                                    .addComponent(tf_ProducerMH)
-                                    .addComponent(tf_TypeMH)
-                                    .addComponent(tf_AmountMH)
-                                    .addComponent(tfl_PriceMH)
-                                    .addComponent(tf_IDMH, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))))
+                                .addComponent(tf_TypeMH, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btn_BackMH, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jl_PriceMH)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(tfl_PriceMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addGap(91, 91, 91))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jl_InformationMH, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140))))
+                        .addComponent(jl_VND)))
+                .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jl_InformationMH)
+                .addGap(178, 178, 178))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jl_InformationMH, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {tf_AmountMH, tf_TypeMH, tfl_NameMH, tfl_PriceMH});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jl_InformationMH)
+                .addGap(67, 67, 67)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_TypeMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_TypeMH)
                     .addComponent(tf_IDMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jl_IDMH))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_NameMH)
                     .addComponent(tfl_NameMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jl_NameMH))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_ProducerMH)
-                    .addComponent(tf_ProducerMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_TypeMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jl_TypeMH))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_AmountMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jl_AmountMH))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfl_PriceMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jl_PriceMH))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_AddMH)
-                    .addComponent(btn_BackMH))
-                .addGap(36, 36, 36))
+                    .addComponent(jl_PriceMH)
+                    .addComponent(tf_ProducerMH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_ProducerMH)
+                    .addComponent(jl_VND))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_BackMH)
+                    .addComponent(btn_AddMH))
+                .addGap(37, 37, 37))
         );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\backgrounds\\wp600x400.png")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jLabel1, gridBagConstraints);
+
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>             
 
     private void btn_BackMHActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.setVisible(false);
@@ -221,7 +258,7 @@ public class AddMatHang extends javax.swing.JFrame {
                  
     private javax.swing.JButton btn_AddMH;
     private javax.swing.JButton btn_BackMH;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jl_VND;
     private javax.swing.JLabel jl_AmountMH;
     private javax.swing.JLabel jl_IDMH;
     private javax.swing.JLabel jl_InformationMH;
@@ -234,7 +271,9 @@ public class AddMatHang extends javax.swing.JFrame {
     private javax.swing.JTextField tf_ProducerMH;
     private javax.swing.JTextField tf_TypeMH;
     private javax.swing.JTextField tfl_NameMH;
-    private javax.swing.JTextField tfl_PriceMH;                
+    private javax.swing.JTextField tfl_PriceMH;    
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
 }
 
 
