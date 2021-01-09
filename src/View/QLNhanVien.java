@@ -339,42 +339,47 @@ public class QLNhanVien extends javax.swing.JFrame {
         {
             case "Tìm Mã":
             {
-                   //Lấy dữ liệu từ ô tìm kiếm
-                String Search_Text = jt_SearchNV.getText();
-                   //Kiểm tra dữ liệu vừa lấy
-                if (Search_Text.equals(""))
-                {    
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu muốn tìm kiếm vào ô trống");
-                }
-                else 
-                {
-                    try {
-                        int check;
-                        StaffManager sm = new StaffManager();
-                           //Kiểm tra xem mã nhân viên nhập có đúng????
-                        check = (sm.Check_MaNV(Integer.parseInt(Search_Text)))?1:0;
-                        switch(check){
-                            case 0:
-                            {
-                                JOptionPane.showMessageDialog(null, "Mã nhân viên không tồn tại");
-                                jt_SearchNV.setText("");
-                                break;
-                            }
-                            case 1:
-                            {  
-                                   //Đưa ds nhân viên sau khi lọc tìm kiếm lên bảng
-                                Model model = new Model();
-                                this.list = sm.getListNV_follow_MaNV(Integer.parseInt(Search_Text));
-                                this.tbStaff.setModel(model);
-                                JOptionPane.showMessageDialog(null, "Tìm kiếm thành công!");
-                                break;
-                            }      
-                        }
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (Exception ex) {
-                        Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                          //Lấy dữ liệu từ ô tìm kiếm
+                    int Search_Text = Integer.parseInt(jt_SearchNV.getText());
+                            //Kiểm tra dữ liệu vừa lấy
+                    if (String.valueOf(Search_Text).equals(""))
+                    {    
+                        JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu muốn tìm kiếm vào ô trống");
                     }
+                    else 
+                    {
+                        try {
+                            int check;
+                            StaffManager sm = new StaffManager();
+                                  //Kiểm tra xem mã nhân viên nhập có đúng????
+                            check = (sm.Check_MaNV(Search_Text))?1:0;
+                            switch(check){
+                                case 0:
+                                {
+                                    JOptionPane.showMessageDialog(null, "Mã nhân viên không tồn tại");
+                                    jt_SearchNV.setText("");
+                                    break;
+                                }
+                                case 1:
+                                {  
+                                      //Đưa ds nhân viên sau khi lọc tìm kiếm lên bảng
+                                    Model model = new Model();
+                                    this.list = sm.getListNV_follow_MaNV(Search_Text);
+                                    this.tbStaff.setModel(model);
+                                    JOptionPane.showMessageDialog(null, "Tìm kiếm thành công!");
+                                    break;
+                                }      
+                            }
+                        } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (Exception ex) {
+                            Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                } catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null, "Bạn đã nhập sai dạng mã nhân viên!");
+                    jt_SearchNV.setText("");
                 }
                 break;
             }

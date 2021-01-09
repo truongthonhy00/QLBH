@@ -1,6 +1,5 @@
 package qlbh;
 import View.DangNhap;
-import View.Menu;
     
 
 public class Main {

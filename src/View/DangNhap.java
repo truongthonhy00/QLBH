@@ -64,7 +64,7 @@ public class DangNhap extends javax.swing.JFrame {
 
         jl_Login.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_Login.setForeground(java.awt.Color.white);
-       jl_Login.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\label đăng nhập 48.png")); // NOI18N
+        jl_Login.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\Code java\\QLBH\\display\\buttons\\label đăng nhập 48.png")); // NOI18N
         jl_Login.setText("ĐĂNG NHẬP");
 
         jl_Account.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N

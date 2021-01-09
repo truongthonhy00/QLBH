@@ -124,7 +124,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
         jc_Search = new javax.swing.JComboBox<>();
         jc_Search_Text = new javax.swing.JTextField();
         jl_MaNV = new javax.swing.JLabel();
-        jl_M = new javax.swing.JLabel();
+        jl_ShowMaNV = new javax.swing.JLabel();
         jl_TenNV = new javax.swing.JLabel();
         jl_NgaySinhNV = new javax.swing.JLabel();
         jl_DiaChiNV = new javax.swing.JLabel();
@@ -172,9 +172,9 @@ public class SuaNhanVien extends javax.swing.JFrame {
         jl_MaNV.setForeground(new java.awt.Color(255, 255, 255));
         jl_MaNV.setText("Mã Nhân viên:");
 
-        jl_M.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jl_M.setForeground(new java.awt.Color(255, 255, 255));
-        jl_M.setText("0");
+        jl_ShowMaNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jl_ShowMaNV.setForeground(new java.awt.Color(255, 255, 255));
+        jl_ShowMaNV.setText("0");
 
         jl_TenNV.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jl_TenNV.setForeground(new java.awt.Color(255, 255, 255));
@@ -328,7 +328,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
                                     .addComponent(tf_DiaChiNV)
                                     .addComponent(tf_NgaySinhNV)
                                     .addComponent(tf_TenNV)
-                                    .addComponent(jl_M, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jl_ShowMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(69, 69, 69))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
@@ -371,7 +371,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
                     .addComponent(jrb_Nam)
                     .addComponent(jrb_Nu)
                     .addComponent(jl_MaNV)
-                    .addComponent(jl_M)
+                    .addComponent(jl_ShowMaNV)
                     .addComponent(jl_GioiTinhNV))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -565,7 +565,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
                 List<Staff> NV = sm.getListNV_follow_MaNV(MaNV); 
                 
                   //Lấy dữ liệu của phần tử thứ 0 lên các Text(Vì trong mảng chỉ có 1 nhân viên ở vị trí 0)
-                jl_MaNV.setText(String.valueOf(NV.get(0).getMaNV()));
+                jl_ShowMaNV.setText(String.valueOf(NV.get(0).getMaNV()));
                 tf_TenNV.setText(NV.get(0).getName());
                 
                 SimpleDateFormat mySimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -594,11 +594,11 @@ public class SuaNhanVien extends javax.swing.JFrame {
     }                                                
 
     private void jbt_Luu_NVActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         df.setLenient(false);
         int flag = 0;
         try {           
-            String maNV = jl_MaNV.getText();
+            String maNV = jl_ShowMaNV.getText();
             String hoTen = tf_TenNV.getText();
             String Text_ngaySinh = tf_NgaySinhNV.getText();
             String diaChi = tf_DiaChiNV.getText();
@@ -611,7 +611,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
             float luong = Float.parseFloat(jl_TongLuongNV.getText());
             
             df.parse(Text_ngaySinh);
-            Date ngaySinh1 = new SimpleDateFormat("yyyy/MM/dd").parse(Text_ngaySinh);
+            Date ngaySinh1 = new SimpleDateFormat("yyyy-MM-dd").parse(Text_ngaySinh);
             
                      //Xử lý lỗi để trống
             if (hoTen.equals("") || Text_ngaySinh.equals("") || diaChi.equals("") ||
@@ -629,7 +629,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Thay đổi thông tin nhân viên thành công!");
                             
                       //Xóa dữ liệu trên các Text
-                    jl_MaNV.setText("");
+                    jl_ShowMaNV.setText("");
                     tf_TenNV.setText("");
                     tf_NgaySinhNV.setText("");
                     tf_DiaChiNV.setText("");
@@ -729,7 +729,7 @@ public class SuaNhanVien extends javax.swing.JFrame {
     private javax.swing.JLabel jl_GioiTinhNV;
     private javax.swing.JLabel jl_HSLNV;
     private javax.swing.JLabel jl_LuongNV;
-    private javax.swing.JLabel jl_M;
+    private javax.swing.JLabel jl_ShowMaNV;
     private javax.swing.JLabel jl_MaNV;
     private javax.swing.JLabel jl_NgayCongNV;
     private javax.swing.JLabel jl_NgaySinhNV;
