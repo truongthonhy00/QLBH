@@ -298,6 +298,7 @@ public class QLNhanVien extends javax.swing.JFrame {
             Model model = new Model();
             this.list = sm.getListNV();
             this.tbStaff.setModel(model);
+            JOptionPane.showMessageDialog(null, "Cập nhật thành công!");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(QLNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {

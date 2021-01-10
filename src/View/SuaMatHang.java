@@ -566,24 +566,22 @@ public class SuaMatHang extends javax.swing.JFrame {
 
 
     private void jb_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_saveActionPerformed
-        int flag = 0;
-        try {      
-            String MaMH = Text_MaMH.getText();
-            String TenMH = tf_TenMH.getText();
-            String LoaiMH = tf_HangSX.getText();
-            String HangSX = tf_HangSX.getText();
-            flag = 1;
-            int SoLuong = Integer.parseInt(tf_SoLuong.getText());
-            flag = 2;
-            int DonGia = Integer.parseInt(tf_DonGia.getText());
-
-
             //Xử lý lỗi để trống
-            if (MaMH.equals("") ||TenMH.equals("") || LoaiMH.equals("") || HangSX.equals("") || String.valueOf(SoLuong).equals("") || String.valueOf(DonGia).equals("")  ){
-                JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
-            }
-            else 
-            {
+        if (Text_MaMH.getText().equals("") || tf_TenMH.getText().equals("") || tf_LoaiMH.getText().equals("") || tf_HangSX.getText().equals("")||tf_SoLuong.getText().equals("")||tf_DonGia.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
+        }
+        else 
+        {
+            int flag = 0;
+            try {      
+                String MaMH = Text_MaMH.getText();
+                String TenMH = tf_TenMH.getText();
+                String LoaiMH = tf_LoaiMH.getText();
+                String HangSX = tf_HangSX.getText();
+                flag = 1;
+                int SoLuong = Integer.parseInt(tf_SoLuong.getText());
+                flag = 2;
+                int DonGia = Integer.parseInt(tf_DonGia.getText());
                 try{
                     ProductManager pm = new ProductManager();
                     pm.updateMH_After_Repair(MaMH,TenMH,LoaiMH,HangSX,SoLuong,DonGia);
@@ -608,23 +606,24 @@ public class SuaMatHang extends javax.swing.JFrame {
                     Logger.getLogger(SuaNhanVien.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } catch (NumberFormatException ex){
-            switch(flag)
-            {
-                case 1:
+            catch (NumberFormatException ex){
+                switch(flag)
                 {
-                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho số lượng!\nVui lòng nhập lại!");
-                    tf_SoLuong.setText("");
-                    break;
+                    case 1:
+                    {
+                        JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho số lượng!\nVui lòng nhập lại!");
+                        tf_SoLuong.setText("");
+                        break;
+                    }
+                    case 2:
+                    {
+                        JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho đơn giá!\nVui lòng nhập lại!");
+                        tf_DonGia.setText("");
+                        break;
+                    }
                 }
-                 case 2:
-                {
-                    JOptionPane.showMessageDialog(null, "Rất tiếc, bạn đã nhập sai định dạng cho đơn giá!\nVui lòng nhập lại!");
-                    tf_DonGia.setText("");
-                    break;
-                }
-            }
-        }        
+            } 
+        }
     }
 
     private void jb_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_returnActionPerformed
