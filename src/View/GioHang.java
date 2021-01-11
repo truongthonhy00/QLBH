@@ -330,13 +330,14 @@ public class GioHang extends javax.swing.JFrame {
             }
             else
             {
-                //Đưa dữ liệu khách hàng vào databas
-            StaffManager sm = new StaffManager();
+                //Đưa dữ liệu khách hàng vào databas 
             String HoTen = tf_NameKH.getText();
             String DiaChi = tf_AddressKH.getText(); 
             String MaSoThue = tf_CodeKH.getText();
             int Sdt = Integer.parseInt(tf_PhoneKH.getText()); 
             int TongGH = Integer.parseInt(total_money.getText());
+            try {
+            StaffManager sm = new StaffManager();
             sm.addKH(HoTen, DiaChi, Sdt, MaSoThue, TongGH);
             
             //Lấy mã khách hàng của khách hàng vừa thêm trong database
@@ -379,13 +380,16 @@ public class GioHang extends javax.swing.JFrame {
             tf_CodeKH.setText("");
             tf_PhoneKH.setText("");
             total_money.setText("0");
-            }  
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GioHang.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(GioHang.class.getName()).log(Level.SEVERE, null, ex);
-        }  
-    }  
+        } 
+    }
+        } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Bạn đã nhập sai số điện thoại!");
+                }
+    }
     
     
      //Xóa giỏ hàng
